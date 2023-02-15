@@ -1481,7 +1481,6 @@ vendor/lib/hw/vendor.mediatek.hardware.mms@1.6-impl.so
 vendor/lib/hw/vendor.mediatek.hardware.pq@2.13-impl.so
 vendor/lib/hw/vendor.xiaomi.hardware.displayfeature@1.0-impl.so
 vendor/lib/hw/vulkan.mali.so
-vendor/lib/hw/vulkan.mt6781.so
 vendor/lib/arm.graphics-V1-ndk_platform.so
 vendor/lib/libDefaultFpsActor.so
 vendor/lib/libFrameRecord.so
@@ -1531,7 +1530,6 @@ vendor/lib64/hw/vendor.mediatek.hardware.mms@1.6-impl.so
 vendor/lib64/hw/vendor.mediatek.hardware.pq@2.13-impl.so
 vendor/lib64/hw/vendor.xiaomi.hardware.displayfeature@1.0-impl.so
 vendor/lib64/hw/vulkan.mali.so
-vendor/lib64/hw/vulkan.mt6781.so
 vendor/lib64/arm.graphics-V1-ndk_platform.so
 vendor/lib64/libDefaultFpsActor.so
 vendor/lib64/libFrameRecord.so
