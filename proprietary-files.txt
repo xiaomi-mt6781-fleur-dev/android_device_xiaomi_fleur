@@ -675,7 +675,6 @@ vendor/lib/libchromanr.so
 vendor/lib/libdip_drv.so
 vendor/lib/libdip_imem.so
 vendor/lib/libdip_postproc.so
-vendor/lib/libdpframework.so
 vendor/lib/libfeature.stereo.provider.so
 vendor/lib/libfeatureiodrv_mem.so
 vendor/lib/libged.so
@@ -689,7 +688,6 @@ vendor/lib/libion_ulit.so
 vendor/lib/libjpeg-alpha-oal_vendor.so
 vendor/lib/libjpeg-alpha_vendor.so
 vendor/lib/libmfllcore.so
-vendor/lib/libmtk_drvb.so
 vendor/lib/libmtkcam.atmseventmgr.so
 vendor/lib/libmtkcam.eventcallback.so
 vendor/lib/libmtkcam.logicalmodule.so
@@ -709,7 +707,6 @@ vendor/lib/libmtkcam_streamutils.so
 vendor/lib/libmtkcam_sysutils.so
 vendor/lib/libmtkcam_tuning_utils.so
 vendor/lib/libmtkcam_ulog.so
-vendor/lib/libpq_prot.so
 vendor/lib/libsensorndkbridge.so
 vendor/lib/ov02b1b_depth_sunny2_mipi_raw_IdxMgr.so
 vendor/lib/ov02b1b_depth_sunny2_mipi_raw_tuning.so
@@ -1288,7 +1285,6 @@ vendor/lib64/libchromanr.so
 vendor/lib64/libdip_drv.so
 vendor/lib64/libdip_imem.so
 vendor/lib64/libdip_postproc.so
-vendor/lib64/libdpframework.so
 vendor/lib64/libeffecthal.base.so
 vendor/lib64/libfeature.face.so
 vendor/lib64/libfeature.stereo.provider.so
@@ -1320,7 +1316,6 @@ vendor/lib64/libmialgo_utils.so
 vendor/lib64/libmibokeh_mt6873.so
 vendor/lib64/libmpbase.so
 vendor/lib64/libmsnr.so
-vendor/lib64/libmtk_drvb.so
 vendor/lib64/libmtkcam.atmseventmgr.so
 vendor/lib64/libmtkcam.eventcallback.so
 vendor/lib64/libmtkcam.featurepipe.capture.so
@@ -1362,7 +1357,6 @@ vendor/lib64/libmtkcam_tuning_utils.so
 vendor/lib64/libmtkcam_ulog.so
 vendor/lib64/libmtkcam_vsync_util.so
 vendor/lib64/libmtkisp_metadata.so
-vendor/lib64/libpq_prot.so
 vendor/lib64/libsensorndkbridge.so
 vendor/lib64/libstereoinfoaccessor_vsdof.so
 vendor/lib64/libvideofilter_only.so
