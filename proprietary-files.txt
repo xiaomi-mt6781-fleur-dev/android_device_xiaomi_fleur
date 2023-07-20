@@ -1978,9 +1978,6 @@ vendor/lib64/nfc_nci.st21nfc.st.so
 vendor/etc/libnfc-hal-st.conf
 vendor/etc/libnfc-nci.conf
 
-# Payment (IFAA)
-app/IFAAService/IFAAService.apk
-
 # Power
 system_ext/lib/vendor.mediatek.hardware.mtkpower@1.0.so
 system_ext/lib/vendor.mediatek.hardware.mtkpower@1.1.so
