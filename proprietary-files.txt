@@ -1890,9 +1890,7 @@ lib64/libmtkavenhancements.so
 lib64/libvcodec_cap.so
 lib64/libvcodec_capenc.so
 -priv-app/ImsService/ImsService.apk
-system_ext/lib/vendor.mediatek.hardware.mtkradioex@1.0.so
 system_ext/lib/vendor.mediatek.hardware.videotelephony@1.0.so
-system_ext/lib64/vendor.mediatek.hardware.mtkradioex@1.0.so
 system_ext/lib64/vendor.mediatek.hardware.videotelephony@1.0.so
 
 # IR
@@ -1998,8 +1996,6 @@ vendor/lib64/vendor.mediatek.hardware.mtkpower@1.0.so
 vendor/lib64/vendor.mediatek.hardware.mtkpower@1.1.so
 
 # Radio
-system_ext/lib/vendor.mediatek.hardware.mtkradioex@2.0.so
-system_ext/lib64/vendor.mediatek.hardware.mtkradioex@2.0.so
 vendor/bin/hw/mtkfusionrild
 vendor/etc/init/mtkrild.rc
 vendor/lib/libmtkcutils.so
