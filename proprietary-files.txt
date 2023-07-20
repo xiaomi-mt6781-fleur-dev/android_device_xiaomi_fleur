@@ -2374,7 +2374,6 @@ vendor/etc/virtual-spn-conf-by-efgid1.xml
 vendor/etc/virtual-spn-conf-by-efpnn.xml
 vendor/etc/virtual-spn-conf-by-efspn.xml
 vendor/etc/virtual-spn-conf-by-imsi.xml
-vendor/framework/com.fingerprints.extension.jar
 vendor/lib/hw/audio_policy.stub.so
 vendor/lib/hw/libSoftGatekeeper.so
 vendor/lib/hw/vendor.mediatek.hardware.keyinstall@1.0-impl.so
