@@ -12,11 +12,15 @@
 
 typedef struct variant_info {
     std::string hwc_value;
-    std::string hwname_value;
     std::string sku_value;
-    std::string device;
 
-    bool nfc;
+    std::string brand;
+    std::string device;
+    std::string marketname;
+    std::string model;
+    std::string mod_device;
+    std::string build_fingerprint;
+
 } variant_info_t;
 
 void search_variant(const std::vector<variant_info_t> variants);

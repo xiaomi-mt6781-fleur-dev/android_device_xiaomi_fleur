@@ -5,8 +5,8 @@
 //
 
 prebuilt_etc {
-    name: "fstab.mt6785",
-    src: "etc/fstab.mt6785",
+    name: "fstab.mt6781",
+    src: "etc/fstab.mt6781",
     vendor: true,
     ramdisk_available: true,
 }
@@ -32,15 +32,15 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
-    name: "init.mt6785.rc",
-    src: "etc/init.mt6785.rc",
+    name: "init.mt6781.rc",
+    src: "etc/init.mt6781.rc",
     sub_dir: "init/hw",
     vendor: true,
 }
 
 prebuilt_etc {
-    name: "init.mt6785.usb.rc",
-    src: "etc/init.mt6785.usb.rc",
+    name: "init.mt6781.usb.rc",
+    src: "etc/init.mt6781.usb.rc",
     sub_dir: "init/hw",
     vendor: true,
 }
@@ -74,8 +74,8 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
-    name: "ueventd.mtk.rc",
+    name: "ueventd.rc",
     filename: "ueventd.rc",
-    src: "etc/ueventd.mtk.rc",
+    src: "etc/ueventd.rc",
     vendor: true,
 }

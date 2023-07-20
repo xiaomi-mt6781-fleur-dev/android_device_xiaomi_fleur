@@ -120,7 +120,7 @@ PRODUCT_PACKAGES += \
     libshim_showlogo
 
 # Display
-TARGET_SCREEN_DENSITY := 440
+TARGET_SCREEN_DENSITY := 392
 TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_WIDTH := 1080
 
@@ -251,7 +251,7 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light-service.rosemary
+    android.hardware.light-service.fleur
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -322,12 +322,12 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
     $(LOCAL_PATH)/overlay-lineage
 
 PRODUCT_PACKAGES += \
-    CarrierConfigOverlayRosemary \
-    FrameworksResOverlayRosemary \
-    SystemUIOverlayRosemary \
-    TelephonyOverlayRosemary \
-    TetheringConfigOverlayRosemary \
-    WifiOverlayRosemary
+    CarrierConfigOverlayFleur \
+    FrameworksResOverlayFleur \
+    SystemUIOverlayFleur \
+    TelephonyOverlayFleur \
+    TetheringConfigOverlayfleur \
+    WifiOverlayFleur
 
 # Power
 PRODUCT_PACKAGES += \
@@ -347,9 +347,6 @@ PRODUCT_PACKAGES += \
     android.hardware.power@1.1.vendor \
     android.hardware.power@1.2.vendor \
     android.hardware.power@1.3.vendor
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
 # Properties
 include $(LOCAL_PATH)/vendor_logtag.mk
@@ -410,13 +407,13 @@ PRODUCT_PACKAGES += \
 
 # Rootdir
 PRODUCT_PACKAGES += \
-    fstab.mt6785 \
-    fstab.mt6785.ramdisk \
+    fstab.mt6781 \
+    fstab.mt6781.ramdisk \
     init.ago.rc \
     init.connectivity.rc \
     init.modem.rc \
-    init.mt6785.rc \
-    init.mt6785.usb.rc \
+    init.mt6781.rc \
+    init.mt6781.usb.rc \
     init.project.rc \
     init.sensor_1_0.rc \
     init.stnfc.rc \
@@ -424,8 +421,8 @@ PRODUCT_PACKAGES += \
     ueventd.mtk.rc
 
 PRODUCT_PACKAGES += \
-    init.recovery.mt6785.rc \
-    init.recovery.mt6785.sh
+    init.recovery.mt6781.rc \
+    init.recovery.mt6781.sh
 
 # Sensors
 PRODUCT_PACKAGES += \
@@ -458,11 +455,11 @@ PRODUCT_PACKAGES += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.1-service.rosemary
+    android.hardware.usb@1.1-service.fleur
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator-service.rosemary
+    android.hardware.vibrator-service.fleur
 
 # VNDK
 PRODUCT_PACKAGES += \
@@ -481,7 +478,7 @@ PRODUCT_PACKAGES += \
     android.hardware.wifi.hostapd@1.2.vendor
 
 PRODUCT_PACKAGES += \
-    android.hardware.wifi@1.0-service-lazy.rosemary
+    android.hardware.wifi@1.0-service-lazy.fleur
 
 PRODUCT_PACKAGES += \
     libkeystore-wifi-hidl \
@@ -493,4 +490,4 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
 
 # Inherit the proprietary files
-$(call inherit-product, vendor/xiaomi/rosemary/rosemary-vendor.mk)
+$(call inherit-product, vendor/xiaomi/fleur/fleur-vendor.mk)

@@ -15,7 +15,7 @@
  */
 
 cc_library_static {
-    name: "libusbconfigfs_rosemary",
+    name: "libusbconfigfs_fleur",
     vendor_available: true,
     export_include_dirs: ["include"],
 

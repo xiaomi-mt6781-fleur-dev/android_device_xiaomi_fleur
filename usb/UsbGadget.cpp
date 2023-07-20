@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#define LOG_TAG "android.hardware.usb.gadget@1.1-service.rosemary"
+#define LOG_TAG "android.hardware.usb.gadget@1.1-service.fleur"
 #include "UsbGadget.h"
 #include <dirent.h>
 #include <fcntl.h>

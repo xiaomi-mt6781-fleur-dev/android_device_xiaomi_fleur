@@ -21,12 +21,10 @@ void property_override(std::string prop, std::string value, bool add) {
 
 std::vector<std::string> ro_props_default_source_order = {
     "odm.",
-    "odm_dlkm.",
     "product.",
     "system.",
     "system_ext.",
     "vendor.",
-    "vendor_dlkm.",
     "",
 };
 
@@ -47,13 +45,10 @@ void set_ro_build_prop(const std::string &prop, const std::string &value, bool p
     std::string variable_name = s.substr(0, s.find(delimiter)); \
     s.erase(0, s.find(delimiter) + delimiter.length());
 
-#define APPEND_STRING(s, to_append) \
-    s.append(" "); \
-    s.append(to_append);
+const std::string fingerprint_to_description(const std::string &fingerprint) {
+    const std::string delimiter = "/";
+    const std::string delimiter2 = ":";
 
-std::string fingerprint_to_description(std::string fingerprint) {
-    std::string delimiter = "/";
-    std::string delimiter2 = ":";
     std::string build_fingerprint_copy = fingerprint;
 
     FIND_AND_REMOVE(build_fingerprint_copy, delimiter, brand)
@@ -65,11 +60,8 @@ std::string fingerprint_to_description(std::string fingerprint) {
     FIND_AND_REMOVE(build_fingerprint_copy, delimiter, build_variant)
     std::string build_version_tags = build_fingerprint_copy;
 
-    std::string description = product + "-" + build_variant;
-    APPEND_STRING(description, platform_version)
-    APPEND_STRING(description, build_id)
-    APPEND_STRING(description, build_number)
-    APPEND_STRING(description, build_version_tags)
+    const std::string description = product + "-" + build_variant + " " + platform_version +
+            " " + build_id + " " + build_number + " " + build_version_tags;
 
     return description;
 }

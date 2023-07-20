@@ -4,7 +4,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-DEVICE_PATH := device/xiaomi/rosemary
+DEVICE_PATH := device/xiaomi/fleur
+KERNEL_PATH := kernel/xiaomi/fleur-prebuilt
 
 # A/B
 AB_OTA_UPDATER := true
@@ -46,7 +47,7 @@ TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
 
 # Bootloader
 BOARD_VENDOR := xiaomi
-TARGET_BOOTLOADER_BOARD_NAME := rosemary
+TARGET_BOOTLOADER_BOARD_NAME := fleur
 TARGET_NO_BOOTLOADER := true
 
 # Boot Image
@@ -84,22 +85,25 @@ ODM_MANIFEST_SKUS += nfc
 ODM_MANIFEST_NFC_FILES := $(DEVICE_PATH)/manifest_nfc.xml
 
 # Init
-TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):init_rosemary
-TARGET_RECOVERY_DEVICE_MODULES := init_rosemary
+TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):init_fleur
+TARGET_RECOVERY_DEVICE_MODULES := init_fleur
 
 # Kernel
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
-TARGET_KERNEL_SOURCE := kernel/xiaomi/mt6785
-TARGET_KERNEL_CONFIG := rosemary_defconfig
-TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_KERNEL_CLANG_VERSION := r450784d
+TARGET_KERNEL_SOURCE := kernel/xiaomi/mt6781-headers
+TARGET_KERNEL_CONFIG := fleur_defconfig
 BOARD_KERNEL_SEPARATED_DTBO := true
-BOARD_CUSTOM_DTBOIMG_MK := $(DEVICE_PATH)/dtbo/dtbo.mk
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 
+# Kernel - prebuilt
+TARGET_FORCE_PREBUILT_KERNEL := true
+TARGET_PREBUILT_KERNEL := $(KERNEL_PATH)/prebuilts/Image.gz
+TARGET_PREBUILT_DTB := $(KERNEL_PATH)/prebuilts/dtb.img
+BOARD_PREBUILT_DTBOIMAGE := $(KERNEL_PATH)/prebuilts/dtbo.img
+
 # OTA assert
-TARGET_OTA_ASSERT_DEVICE := rosemary,secret,maltose
+TARGET_OTA_ASSERT_DEVICE := fleur,secret,maltose
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072                   # 2048      * 64   (pagesize)
@@ -140,7 +144,7 @@ TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 BOARD_USES_METADATA_PARTITION := true
 
 # Platform
-TARGET_BOARD_PLATFORM := mt6785
+TARGET_BOARD_PLATFORM := mt6781
 BOARD_HAS_MTK_HARDWARE := true
 BOARD_HAVE_MTK_FM := true
 
@@ -152,7 +156,7 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 
 # Recovery
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.mt6785
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.mt6781
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
 # RIL
@@ -165,7 +169,7 @@ SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
 
 # SPL
-VENDOR_SECURITY_PATCH := 2021-10-01
+VENDOR_SECURITY_PATCH := 2022-07-01
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
@@ -199,4 +203,4 @@ BOARD_VNDK_VERSION := current
 WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 
 # Inherit the proprietary files
-include vendor/xiaomi/rosemary/BoardConfigVendor.mk
+include vendor/xiaomi/fleur/BoardConfigVendor.mk

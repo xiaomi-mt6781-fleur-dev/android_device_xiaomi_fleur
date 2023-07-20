@@ -13,10 +13,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 cc_binary {
-    name: "android.hardware.usb@1.1-service.rosemary",
+    name: "android.hardware.usb@1.1-service.fleur",
     relative_install_path: "hw",
-    init_rc: ["android.hardware.usb@1.1-service.rosemary.rc"],
-    vintf_fragments: ["android.hardware.usb@1.1-service.rosemary.xml", "android.hardware.usb.gadget@1.1-service.rosemary.xml"],
+    init_rc: ["android.hardware.usb@1.1-service.fleur.rc"],
+    vintf_fragments: ["android.hardware.usb@1.1-service.fleur.xml", "android.hardware.usb.gadget@1.1-service.fleur.xml"],
     srcs: ["service.cpp", "Usb.cpp", "UsbGadget.cpp"],
     shared_libs: [
         "android.hardware.usb@1.0",
@@ -30,6 +30,6 @@ cc_binary {
         "liblog",
         "libutils",
     ],
-    static_libs: ["libusbconfigfs_rosemary"],
+    static_libs: ["libusbconfigfs_fleur"],
     proprietary: true,
 }

@@ -2,7 +2,7 @@
 # in normal and FM mode.
 
 # Start the HAL service in all modes (FM, meta, normal)
-on post-fs && property:ro.boot.hwname=rosemary
+on post-fs && property:ro.boot.hwname=fleur
     start nfc_hal_service
     setprop ro.vendor.se.type HCE,UICC
 

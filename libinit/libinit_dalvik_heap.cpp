@@ -18,31 +18,31 @@
 
 #define GB(b) (b * 1024ull * 1024 * 1024)
 
-static const dalvik_heap_info_t dalvik_heap_info_6144 = {
-    .heapstartsize = "16m",
+static const dalvik_heap_info_t dalvik_heap_info_16384 = {
+    .heapstartsize = "32m",
+    .heapgrowthlimit = "448m",
+    .heapsize = "640m",
+    .heapminfree = "16m",
+    .heapmaxfree = "64m",
+    .heaptargetutilization = "0.4",
+};
+
+static const dalvik_heap_info_t dalvik_heap_info_12288 = {
+    .heapstartsize = "24m",
+    .heapgrowthlimit = "384m",
+    .heapsize = "512m",
+    .heapminfree = "8m",
+    .heapmaxfree = "56m",
+    .heaptargetutilization = "0.42",
+};
+
+static const dalvik_heap_info_t dalvik_heap_info_8192 = {
+    .heapstartsize = "24m",
     .heapgrowthlimit = "256m",
     .heapsize = "512m",
     .heapminfree = "8m",
-    .heapmaxfree = "32m",
-    .heaptargetutilization = "0.5",
-};
-
-static const dalvik_heap_info_t dalvik_heap_info_4096 = {
-    .heapstartsize = "8m",
-    .heapgrowthlimit = "256m",
-    .heapsize = "512m",
-    .heapminfree = "8m",
-    .heapmaxfree = "16m",
-    .heaptargetutilization = "0.6",
-};
-
-static const dalvik_heap_info_t dalvik_heap_info_2048 = {
-    .heapstartsize = "8m",
-    .heapgrowthlimit = "192m",
-    .heapsize = "512m",
-    .heapminfree = "512k",
-    .heapmaxfree = "8m",
-    .heaptargetutilization = "0.75",
+    .heapmaxfree = "48m",
+    .heaptargetutilization = "0.46",
 };
 
 void set_dalvik_heap() {
@@ -51,12 +51,12 @@ void set_dalvik_heap() {
 
     sysinfo(&sys);
 
-    if (sys.totalram > GB(5))
-        dhi = &dalvik_heap_info_6144;
-    else if (sys.totalram > GB(3))
-        dhi = &dalvik_heap_info_4096;
+    if (sys.totalram > GB(15))
+        dhi = &dalvik_heap_info_16384;
+    else if (sys.totalram > GB(11))
+        dhi = &dalvik_heap_info_12288;
     else
-        dhi = &dalvik_heap_info_2048;
+        dhi = &dalvik_heap_info_8192;
 
     property_override(HEAPSTARTSIZE_PROP, dhi->heapstartsize);
     property_override(HEAPGROWTHLIMIT_PROP, dhi->heapgrowthlimit);

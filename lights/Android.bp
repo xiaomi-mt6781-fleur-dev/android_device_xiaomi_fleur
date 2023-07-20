@@ -14,9 +14,9 @@
 // limitations under the License.
 
 cc_binary {
-    name: "android.hardware.light-service.rosemary",
-    init_rc: ["android.hardware.light-service.rosemary.rc"],
-    vintf_fragments: ["android.hardware.light-service.rosemary.xml"],
+    name: "android.hardware.light-service.fleur",
+    init_rc: ["android.hardware.light-service.fleur.rc"],
+    vintf_fragments: ["android.hardware.light-service.fleur.xml"],
     relative_install_path: "hw",
     srcs: [
         "main.cpp",

@@ -7,7 +7,6 @@ on post-fs-data
     chmod 0660 /dev/msensor
     chmod 0666 /dev/gsensor
     chmod 0666 /dev/als_ps
-	chmod 0666 /dev/lightsecondary
     chmod 0666 /dev/gyroscope
     chmod 0660 /dev/aal_als
     chmod 0660 /dev/humidity
@@ -32,7 +31,6 @@ on post-fs-data
     chown system system /dev/msensor
     chown radio system /dev/gsensor
     chown radio system /dev/als_ps
-	chown radio system /dev/lightsecondary
     chown radio system /dev/gyroscope
     chown system system /dev/aal_als
     chown system system /dev/humidity
@@ -151,12 +149,10 @@ on post-fs-data
     chmod 0660 /sys/class/sensor/m_situ_misc/situdelay
     chmod 0660 /sys/class/sensor/m_situ_misc/situbatch
     chmod 0660 /sys/class/sensor/m_situ_misc/situflush
-	chmod 0660 /sys/class/sensor/m_situ_misc/lightsecondaryCali
     chown system system /sys/class/sensor/m_situ_misc/situactive
     chown system system /sys/class/sensor/m_situ_misc/situdelay
     chown system system /sys/class/sensor/m_situ_misc/situbatch
     chown system system /sys/class/sensor/m_situ_misc/situflush
-	chown system system /sys/class/sensor/m_situ_misc/lightsecondaryCali
 
     chmod 0660 /sys/class/sensor/m_act_misc/actactive
     chmod 0660 /sys/class/sensor/m_act_misc/actdelay

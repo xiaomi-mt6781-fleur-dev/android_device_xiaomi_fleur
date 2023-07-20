@@ -24,7 +24,7 @@
 /dev/cpu_dma_latency                                                                                    u:object_r:latency_device:s0
 
 # Lights
-/(vendor|system/vendor)/bin/hw/android\.hardware\.light-service\.rosemary                          	u:object_r:hal_light_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.light-service\.fleur                          	u:object_r:hal_light_default_exec:s0
 
 # Sensors
 /dev/elliptic[0-1] 											u:object_r:sensor_device:s0
@@ -33,10 +33,10 @@
 /vendor/bin/mi_thermald       										u:object_r:mi_thermald_exec:s0
 
 # USB
-/(vendor|system/vendor)/bin/hw/android\.hardware\.usb@1\.[0-9]+-service\.rosemary   			u:object_r:mtk_hal_usb_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.usb@1\.[0-9]+-service\.fleur   			u:object_r:mtk_hal_usb_exec:s0
 
 # Vibrator
-/vendor/bin/hw/android\.hardware\.vibrator-service\.rosemary					        u:object_r:hal_vibrator_default_exec:s0
+/vendor/bin/hw/android\.hardware\.vibrator-service\.fleur					        u:object_r:hal_vibrator_default_exec:s0
 
 # WiFi
-/(vendor|system/vendor)/bin/hw/android\.hardware\.wifi@[0-9]\.[0-9]-service-lazy\.rosemary 		u:object_r:hal_wifi_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.wifi@[0-9]\.[0-9]-service-lazy\.fleur 		u:object_r:hal_wifi_default_exec:s0

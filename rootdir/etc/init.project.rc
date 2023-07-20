@@ -8,8 +8,9 @@ on init
 on post-fs-data
 	mkdir /data/vendor/thermal 0771 root system
     mkdir /data/vendor/thermal/config 0771 root system
-    #thermal
-    chown system system /sys/class/thermal/thermal_message/sconfig
+#thermal
+	chown system system /sys/class/thermal/thermal_message/sconfig
+
 #Camera
     chmod 0660 /dev/MAINAF
     chown system camera /dev/MAINAF
@@ -32,31 +33,38 @@ on post-fs-data
     chmod 0660 /dev/BU64745GWZAF
     chown system camera /dev/BU64745GWZAF
 
-#XIAOMI_DUAL_CAM_BIN
-    mkdir /mnt/vendor/persist/camera/ 0777 system camera
-    mkdir /data/vendor/camera/ 0777 system camera
+    mkdir /mnt/vendor/persist/camera
+    mkdir /data/vendor/camera
+    chown system system /mnt/vendor/persist/camera
+    chown system system /data/vendor/camera
+    chmod 0777 /mnt/vendor/persist/camera
+    chmod 0777 /data/vendor/camera
+    chmod 0644 /mnt/vendor/persist/camera/rear_dc_cal_wd.bin
+    chmod 0644 /mnt/vendor/persist/camera/rear_dc_cal_wu.bin
+    chmod 0644 /data/vendor/camera/com.xiaomi.dcal.wd.data
+    chmod 0644 /data/vendor/camera/com.xiaomi.dcal.wu.data
+    chown system system /data/vendor/camera/com.xiaomi.dcal.wd.data
+    chown system system /data/vendor/camera/com.xiaomi.dcal.wu.data
+    restorecon_recursive /mnt/vendor/persist/camera
+
 # for intsense bokeh use
     mkdir /data/vendor/camera/model 0776 system camera
     mkdir /data/vendor/camera/model/dof_model 0776 system camera
     mkdir /data/vendor/camera/model/rt_model 0776 system camera
-
     copy /vendor/etc/camera/model/dof_model/capture_cache /data/vendor/camera/model/dof_model/capture_cache
     copy /vendor/etc/camera/model/dof_model/capture_model /data/vendor/camera/model/dof_model/capture_model
     copy /vendor/etc/camera/model/dof_model/capture_policy /data/vendor/camera/model/dof_model/capture_policy
     copy /vendor/etc/camera/model/rt_model/preview_cache /data/vendor/camera/model/rt_model/preview_cache
     copy /vendor/etc/camera/model/rt_model/preview_model /data/vendor/camera/model/rt_model/preview_model
     copy /vendor/etc/camera/model/rt_model/preview_policy /data/vendor/camera/model/rt_model/preview_policy
-
     chmod 0666 /data/vendor/camera/model/dof_model/capture_cache
     chmod 0666 /data/vendor/camera/model/dof_model/capture_model
     chmod 0666 /data/vendor/camera/model/dof_model/capture_policy
     chmod 0666 /data/vendor/camera/model/rt_model/preview_cache
     chmod 0666 /data/vendor/camera/model/rt_model/preview_model
     chmod 0666 /data/vendor/camera/model/rt_model/preview_policy
-
 # for mibokeh use
     mkdir /data/vendor/camera/mibokeh 0776 system camera
-
 #SMB
     chown system system /proc/smb/ScreenComm
     chmod 0660 /proc/smb/ScreenComm
@@ -77,12 +85,6 @@ on init
     # Therefore, if the target doesn't support sd hot-plugging (Ex: the SD card slot in a battery compartment), we need to export SECONDARY_STORAGE in 'boot' section
     #
     # export SECONDARY_STORAGE /storage/sdcard1
-
-#add thermal tactics
-on  property:vendor.camera.boost.en=1
-    write /sys/class/thermal/thermal_message/sconfig 12
-on  property:vendor.camera.boost.en=0
-    write /sys/class/thermal/thermal_message/sconfig 17
 
 service fuse_usbotg /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/usbotg /storage/usbotg
     class late_start
