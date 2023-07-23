@@ -89,6 +89,10 @@ function blob_fixup {
 		grep -q "libshim_sensors.so" "${2}" || \
 		"${PATCHELF}" --add-needed "libshim_sensors.so" "${2}"
 		;;
+	vendor/lib*/libmtkcam_stdutils.so)
+		grep -q "libutils.so" "${2}" && \
+		"${PATCHELF}" --replace-needed "libutils.so" "libutils-v32.so" "${2}"
+		;;
 	esac
 }
 
