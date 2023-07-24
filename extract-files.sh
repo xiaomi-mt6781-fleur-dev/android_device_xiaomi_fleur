@@ -59,6 +59,10 @@ function blob_fixup {
 		grep -q "libshim_sink.so" "${2}" || \
 		"${PATCHELF}" --add-needed "libshim_sink.so" "${2}"
 		;;
+    vendor/bin/hw/android.hardware.gnss-service.mediatek |\
+    vendor/lib64/hw/android.hardware.gnss-impl-mediatek.so)
+        "$PATCHELF" --replace-needed "android.hardware.gnss-V1-ndk_platform.so" "android.hardware.gnss-V1-ndk.so" "$2"
+        ;;
     vendor/lib/hw/vendor.mediatek.hardware.pq@2.13-impl.so)
         ;&
     vendor/lib64/hw/vendor.mediatek.hardware.pq@2.13-impl.so)
