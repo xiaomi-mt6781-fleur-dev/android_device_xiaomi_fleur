@@ -12,6 +12,8 @@ import ${ro.vendor.rc}init.sensor_1_0.rc
 import /vendor/etc/init/hw/init.stnfc.rc
 import /system/etc/init/hw/init.stnfc.rc
 import init.mishow.ctl.rc
+import ${ro.vendor.rc}init.cgroup.rc
+
 
 # init.modem.rc must be the LAST rc file because vold.post_fs_data_done is set in it
 import ${ro.vendor.rc}init.modem.rc
@@ -35,6 +37,7 @@ on init
 
     # M375 Add for sensor calibration command in 20210719 start
     mkdir /mnt/vendor/persist 0771 system system
+
     mkdir /mnt/cd-rom 0000 system system
     mkdir /mnt/vendor/rescue 0771 system system
 
@@ -130,7 +133,7 @@ on fs
     write /proc/bootprof "INIT:fs"
 
     wait_for_prop hwservicemanager.ready "true"
-    start vendor.boot-hal-1-1
+    start vendor.boot-hal-1-2
 
     # mount fstab
     write /proc/bootprof "INIT:Mount_START"
@@ -144,7 +147,7 @@ on fs
     write /proc/sys/vm/page-cluster 0
     write /proc/sys/vm/swappiness 100
     write /sys/kernel/mm/swap/vma_ra_enabled false
-    # swapon_all /vendor/fstab.enableswap
+    swapon_all /vendor/fstab.enableswap
 	#Thermal
     mkdir /data/vendor/.tp/ 0775 system system
     mkdir /data/vendor/thermal 0771 root system
@@ -156,7 +159,6 @@ on fs
 on late-fs
     write /proc/bootprof "INIT:late-fs"
     wait_for_prop hwservicemanager.ready "true"
-    exec_start wait_for_keymaster
 
     write /proc/bootprof "INIT:Mount_START --late"
     write /sys/kernel/tracing/trace_marker "B|1|Mount late"
@@ -171,12 +173,6 @@ on late-fs
 
 on post-fs
     write /proc/bootprof "INIT:post-fs"
-
-    # boot perf. tune
-    write /proc/perfmgr/boost_ctrl/eas_ctrl/boot_boost "0 100"
-    write /proc/perfmgr/boost_ctrl/eas_ctrl/boot_boost "1 100"
-    write /proc/perfmgr/boost_ctrl/eas_ctrl/boot_boost "2 100"
-    write /proc/perfmgr/boost_ctrl/eas_ctrl/boot_boost "3 100"
 
     # Support legacy paths
     symlink /sdcard /storage/sdcard0
@@ -219,7 +215,6 @@ on post-fs
     symlink /dev/block/platform/bootdevice/by-name/preloader_b /dev/block/platform/bootdevice/by-name/preloader_emmc_b
     symlink /dev/block/platform/bootdevice/by-name/preloader_a /dev/block/platform/bootdevice/by-name/preloader_ufs_a
     symlink /dev/block/platform/bootdevice/by-name/preloader_b /dev/block/platform/bootdevice/by-name/preloader_ufs_b
-
 # M375  Add for pd charge batterysecret
 on property:sys.boot_completed=1
     chmod 0664 /sys/class/Charging_Adapter/pd_adapter/usbpd_verifed
@@ -237,7 +232,6 @@ service batterysecret /vendor/bin/batterysecret
 
 on property:sys.boot_completed=1
     start batterysecret
-
 # add charge_logger service for dump charge message
 service charge_logger /vendor/bin/charge_logger
     class last_start
@@ -248,6 +242,14 @@ service charge_logger /vendor/bin/charge_logger
 
 on property:sys.boot_completed=1
     start charge_logger
+
+    symlink /dev/block/mapper/pl_a /dev/block/by-name/preloader_raw_a
+    symlink /dev/block/mapper/pl_b /dev/block/by-name/preloader_raw_b
+    symlink /dev/block/mapper/pl_a /dev/block/platform/bootdevice/by-name/preloader_raw_a
+    symlink /dev/block/mapper/pl_b /dev/block/platform/bootdevice/by-name/preloader_raw_b
+
+    # allow ccci_mdinit access ccci_dump
+    chown root system /proc/ccci_dump
 
 on post-fs-data
     write /proc/bootprof "INIT:post-fs-data"
@@ -272,10 +274,6 @@ on post-fs-data
     chown system system /mnt/vendor/nvcfg/fg
     chown system system /mnt/vendor/nvcfg/fg/old_fg_data
     chown system system /mnt/vendor/nvcfg/fg/car_tune_value
-# M375 add for saving files of TP selftest
-    mkdir /data/vendor/touchpad
-    chown system system /data/vendor/touchpad
-    chmod 0775 /data/vendor/touchpad
 # M375  Add for sensor calibration command  in 20210719 start
     mkdir /mnt/vendor/persist/sensor
     chown system system /mnt/vendor/persist/sensor
@@ -289,6 +287,11 @@ on post-fs-data
     chown system system /mnt/vendor/persist/sensor/default_cal_data.txt
     chown system system /mnt/vendor/persist/.sn.bin
 # M375  Add for sensor calibration command in 20210719 end
+
+    # M375 add for saving files of TP selftest
+    mkdir /data/vendor/touchpad
+    chown system system /data/vendor/touchpad
+    chmod 0775 /data/vendor/touchpad
 
     # create basic filesystem structure
     # We chown/chmod /mnt/vendor/nvdata again so because mount is run as root + defaults
@@ -414,6 +417,8 @@ on post-fs-data
     #mknod /dev/M4U_device c 188 0
     chmod 0444 /dev/m4u
     #chown system media /dev/M4U_device
+    chmod 0640 /proc/m4u
+    chown system media /proc/m4u
 
     #set mlock to 64MB for netd
     setrlimit 8 67108864 67108864
@@ -470,7 +475,7 @@ on post-fs-data
     chown media system /dev/video0
     chmod 0660 /dev/video1
     chown media system /dev/video1
-    mkdir /data/vendor/vcodec 0770 media system
+    mkdir /data/vendor/vcodec 0777 media system
     mkdir /data/vendor/vcodec/log 0770 media system
     mkdir /data/vendor/vcodec/in 0770 media system
     mkdir /data/vendor/vcodec/out 0770 media system
@@ -804,6 +809,7 @@ on zygote-start
 
 on early-boot
     write /proc/bootprof "INIT:early-boot"
+    verity_update_state
 
 on boot
     write /proc/bootprof "INIT:boot"
@@ -820,14 +826,14 @@ on boot
     chmod 0664 /sys/class/leds/blue/brightness
     chown system system /sys/class/leds/blue/brightness
 
+    chmod 0777 /sys/class/ant_class/ant_state
+    chown system system /sys/class/ant_class/ant_state
+
     chmod 0666 /sys/devices/platform/14000000.dispsys_config/drm/card0/card0-DSI-1/disp_param
     chown system system /sys/devices/platform/14000000.dispsys_config/drm/card0/card0-DSI-1/disp_param
 
     chmod 0666 /sys/class/drm/card0-DSI-1/panel_info
     chown system system /sys/class/drm/card0-DSI-1/panel_info
-
-    chmod 0777 /sys/class/ant_class/ant_state
-    chown system system /sys/class/ant_class/ant_state
 
     chown system system /sys/devices/system/cpu/cpufreq/hotplug/cpu_num_base
     chmod 0660 /sys/devices/system/cpu/cpufreq/hotplug/cpu_num_base
@@ -1068,33 +1074,13 @@ on property:sys.boot_completed=1
     write /sys/block/dm-5/queue/read_ahead_kb 128
 
 
-# start EAS+
 on property:sys.boot_completed=1
 
-    write /sys/devices/system/cpu/eas/enable 2
-    write /proc/cpufreq/cpufreq_sched_disable 0
-    chown system system /dev/stune/foreground/schedtune.prefer_idle
-    chown system system /dev/stune/top-app/schedtune.prefer_idle
-    chown system system /dev/stune/rt/schedtune.prefer_idle
-    write /dev/stune/foreground/schedtune.prefer_idle 0
-    write /dev/stune/top-app/schedtune.prefer_idle 0
-    write /dev/stune/rt/schedtune.prefer_idle 0
-    write /proc/sys/kernel/sched_migration_cost_ns 200000
-    write /proc/perfmgr/boost_ctrl/eas_ctrl/sched_big_task_rotation 1
     write /proc/sys/net/ipv4/tcp_mtu_probing 1
     write /proc/sys/net/ipv4/ip_no_pmtu_disc 0
+    # stop bootprof
+    write /proc/bootprof 0
 
-    # restore perf. parameters
-    write /proc/perfmgr/boost_ctrl/eas_ctrl/boot_boost "0 0"
-    write /proc/perfmgr/boost_ctrl/eas_ctrl/boot_boost "1 0"
-    write /proc/perfmgr/boost_ctrl/eas_ctrl/boot_boost "2 0"
-    write /proc/perfmgr/boost_ctrl/eas_ctrl/boot_boost "3 0"
-    write /proc/perfmgr/boost_ctrl/cpu_ctrl/boot_freq "-1 -1 -1 -1"
-    write /sys/devices/platform/boot_dramboost/dramboost/dramboost 0
-
-    # switch to sched-dvfs
-    write /sys/devices/system/cpu/cpufreq/policy0/scaling_governor "schedplus"
-    write /sys/devices/system/cpu/cpufreq/policy4/scaling_governor "schedplus"
 
 #service dpfd /vendor/bin/dpfd
 #	user root
@@ -1150,10 +1136,19 @@ on property:persist.vendor.mediatek.fg.log.enable=1
 
 # add meta_tst for ATM
 service meta_tst /vendor/bin/meta_tst
-    class main
-    user system
+    class core
+    user root
     group radio gps system wifi audio bluetooth media
     capabilities NET_RAW NET_ADMIN
+    socket meta-atci stream 660 radio system
+    disabled
+    oneshot
+
+service factory_no_image /vendor/bin/factory
+    user root
+    group radio system wifi media gps audio bluetooth wakelock nfc
+    capabilities BLOCK_SUSPEND NET_RAW NET_ADMIN SYS_ADMIN SYS_BOOT
+    socket factory-atci stream 660 radio system
     disabled
     oneshot
 
@@ -1165,6 +1160,12 @@ on property:sys.boot_completed=1 && property:ro.boot.atm=enable
 on property:vendor.mtk.md1.status=reset
     setprop persist.vendor.atm.mdmode normal
 
+#2019.12.30 tianyajun add pocket mode
+on property:odm.pocket.mode.keygurad.locked=1
+    write /proc/tp_palm 1
+
+on property:odm.pocket.mode.keygurad.locked=0
+    write /proc/tp_palm 0
 #add mi_thermald for thermal
 service mi_thermald /system/vendor/bin/mi_thermald
 	class main
@@ -1172,18 +1173,9 @@ service mi_thermald /system/vendor/bin/mi_thermald
 	group system
 	seclabel u:r:mi_thermald:s0
 
-#2019.12.30 tianyajun add pocket mode
-on property:odm.pocket.mode.keygurad.locked=1
-    write /proc/tp_palm 1
-
-on property:odm.pocket.mode.keygurad.locked=0
-    write /proc/tp_palm 0
-
-
 # FPSGO FBT Game
 on boot
     insmod /vendor/lib/modules/fpsgo.ko
-#insmod /vendor/lib/modules/mi_memory.ko
 
 # VSIM service (vendor OSI)
 service osi /system/bin/osi

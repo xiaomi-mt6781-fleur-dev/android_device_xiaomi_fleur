@@ -214,7 +214,7 @@ Only the three quirks included above are recognized at this point:
             <Limit name="performance-point-1920x1080" value="30" />
         </MediaCodec>
         <MediaCodec name="OMX.MTK.VIDEO.ENCODER.HEVC" type="video/hevc" >
-            <Limit name="size" min="160x128" max="2560x1440" />
+            <Limit name="size" min="160x128" max="3840x2176" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
             <Limit name="quality" range="0-100" default="50" />
@@ -222,7 +222,7 @@ Only the three quirks included above are recognized at this point:
             <Quirk name="requires-allocate-on-output-ports" />
             <Limit name="concurrent-instances" max="16" />
             <Feature name="bitrate-modes" value="VBR,CBR,CQ" />
-            <Limit name="performance-point-1920x1080" value="30" />
+            <Limit name="performance-point-3840x2160" value="30" />
         </MediaCodec>
         <!--modify for HTH-186766 from mtk ALPS06435763 -->
         <MediaCodec name="OMX.MTK.VIDEO.ENCODER.HEIF" type="image/vnd.android.heic" >

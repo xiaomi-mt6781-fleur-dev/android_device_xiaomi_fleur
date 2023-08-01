@@ -1,7 +1,4 @@
 libOpenCL.so
-libnir_neon_driver_ndk.mtk.so
-libcmdl_ndk.mtk.so
-libarmnn_ndk.mtk.so
 libmpbase.so 64
 libmialgoengine.so 64
 libarcsoft_beautyshot.so 64
@@ -18,10 +15,10 @@ libsdk_sr.so 64
 lib_sr_models.so 64
 libanc_dc_base.so 64
 libmialgo_utils.so 64
-libc++_shared.so 64
 libarcsoft_high_dynamic_range.so 64
 libarcsoft_low_light_hdr.so 64
 libarcsoft_hdr_detection.so 64
 libwa_widelens_undistort.so 64
 vendor.mediatek.hardware.camera.isphal@1.0.so 64
 vendor.mediatek.hardware.camera.atms@1.0.so 64
+

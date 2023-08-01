@@ -161,9 +161,9 @@
 #MTK In-House TEE
 /dev/ttyACM0              0660   radio      radio
 
+#ir
+/dev/spidev3.0            0660   system     system
+
 #elliptic sensor
 /dev/elliptic0            0644   system     system
 /dev/elliptic1            0644   system     system
-
-#ir
-/dev/spidev3.0            0660   system	    system
