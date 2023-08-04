@@ -187,7 +187,6 @@ vendor/lib64/libnvram_sec.so
 # Camera
 lib/vendor.mediatek.hardware.camera.isphal@1.0.so
 lib64/vendor.mediatek.hardware.camera.isphal@1.0.so
-system_ext/lib64/vendor.mediatek.hardware.camera.atms@1.0.so
 vendor/lib/hw/vendor.mediatek.hardware.camera.atms@1.0-impl.so
 vendor/lib/hw/vendor.mediatek.hardware.camera.bgservice@1.1-impl.so
 vendor/lib/hw/vendor.mediatek.hardware.camera.postproc@1.0-impl.so
@@ -1455,7 +1454,6 @@ lib64/vendor.mediatek.hardware.pq@2.1.so
 lib64/vendor.mediatek.hardware.pq@2.2.so
 lib64/vendor.mediatek.hardware.pq@2.3.so
 lib64/vendor.xiaomi.hardware.displayfeature@1.0.so
-system_ext/lib64/vendor.mediatek.hardware.composer_ext@1.0.so
 vendor/bin/hw/android.hardware.graphics.allocator@4.0-service-mediatek
 vendor/bin/hw/android.hardware.graphics.composer@2.1-service
 vendor/bin/hw/android.hardware.memtrack@1.0-service
@@ -1801,8 +1799,6 @@ vendor/etc/libnfc-hal-st.conf
 vendor/etc/libnfc-nci.conf
 
 # Radio
-system_ext/lib/vendor.mediatek.hardware.mtkradioex@3.0.so
-system_ext/lib64/vendor.mediatek.hardware.mtkradioex@3.0.so
 vendor/bin/hw/mtkfusionrild
 vendor/etc/init/mtkrild.rc
 vendor/lib/libmtkcutils.so
@@ -1825,8 +1821,6 @@ vendor/lib64/vendor.mediatek.hardware.mtkradioex@2.0.so
 vendor/lib64/vendor.mediatek.hardware.mtkradioex@3.0.so
 
 # Radio (IMS)
-system_ext/lib/vendor.mediatek.hardware.videotelephony@1.0.so
-system_ext/lib64/vendor.mediatek.hardware.videotelephony@1.0.so
 vendor/lib/hw/vendor.mediatek.hardware.videotelephony@1.0-impl.so
 vendor/lib/vendor.mediatek.hardware.rcs@2.0.so
 vendor/lib/vendor.mediatek.hardware.videotelephony@1.0.so
