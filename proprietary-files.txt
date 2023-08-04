@@ -1883,11 +1883,9 @@ vendor/etc/thermal-youtube.conf
 vendor/etc/thermald-devices.conf
 
 # Wi-Fi
-vendor/bin/hw/android.hardware.wifi@1.0-service-lazy
 vendor/bin/hw/hostapd
 vendor/bin/hw/wpa_supplicant
 vendor/etc/init/android.hardware.wifi.supplicant-service.rc
-vendor/etc/init/android.hardware.wifi@1.0-service-lazy.rc
 vendor/lib/libkeystore-wifi-hidl.so
 vendor/lib64/libkeystore-engine-wifi-hidl.so
 vendor/lib64/libkeystore-wifi-hidl.so
