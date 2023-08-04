@@ -61,9 +61,6 @@ PRODUCT_PACKAGES += \
     audio.usb.default
 
 PRODUCT_PACKAGES += \
-    libshim_audio
-
-PRODUCT_PACKAGES += \
     libalsautils_legacy \
     libtinycompress \
     libtinyxml \

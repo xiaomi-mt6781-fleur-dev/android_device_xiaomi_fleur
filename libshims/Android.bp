@@ -5,18 +5,6 @@
 //
 
 cc_library_shared {
-    name: "libshim_audio",
-    srcs: [
-        "libshim_audio.cpp"
-    ],
-    shared_libs: [
-        "libmedia_helper",
-        "libaudioutils"
-    ],
-    vendor: true
-}
-
-cc_library_shared {
     name: "libshim_beanpod",
     srcs: ["libshim_beanpod.cpp"],
     vendor: true,
