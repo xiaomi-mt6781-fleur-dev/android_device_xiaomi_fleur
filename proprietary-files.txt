@@ -1686,6 +1686,9 @@ vendor/lib/hw/consumerir.default.so
 vendor/lib64/hw/android.hardware.ir@1.0-impl.so
 vendor/lib64/hw/consumerir.default.so
 
+# FM Radio
+-system_ext/lib64/libfmjni.so:system/lib64/libfmjni.so
+
 # Keymaster
 vendor/bin/hw/android.hardware.keymaster@4.1-service.beanpod
 vendor/bin/hw/vendor.mediatek.hardware.keymaster_attestation@1.1-service
