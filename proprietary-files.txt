@@ -1431,7 +1431,7 @@ vendor/etc/camera/vidhance_calibration
 # Charger
 bin/kpoc_charger
 etc/init/kpoc_charger.rc
-lib/libshowlogo.so
+lib64/libshowlogo.so
 lib/libsysenv_system.so
 vendor/bin/batterysecret
 
