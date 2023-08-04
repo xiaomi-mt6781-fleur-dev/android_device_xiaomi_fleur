@@ -1598,6 +1598,38 @@ vendor/bin/hw/android.hardware.dumpstate@1.1-service.xiaomi
 vendor/etc/init/android.hardware.dumpstate@1.1-service.xiaomi.rc
 vendor/etc/vintf/manifest/android.hardware.dumpstate@1.1-service.xiaomi.xml
 
+# IMS-System
+bin/vtservice
+etc/init/init.vtservice.rc
+-framework/mediatek-common.jar
+-framework/mediatek-framework.jar
+-framework/mediatek-ims-base.jar
+-framework/mediatek-ims-common.jar
+-framework/mediatek-ims-extension-plugin.jar
+-framework/mediatek-ims-legacy.jar
+-framework/mediatek-telecom-common.jar
+-framework/mediatek-telephony-base.jar
+-framework/mediatek-telephony-common.jar
+lib/libcomutils.so
+lib/libimsma.so
+lib/libimsma_adapt.so
+lib/libimsma_rtp.so
+lib/libimsma_socketwrapper.so
+lib/libmtk_vt_service.so
+lib/libmtk_vt_wrapper.so
+lib/libmtkavenhancements.so
+lib/libsignal.so
+lib/libsink.so
+lib/libsource.so
+lib/libvcodec_cap.so
+lib/libvcodec_capenc.so
+lib/libvt_avsync.so
+lib64/libmtk_vt_wrapper.so
+lib64/libmtkavenhancements.so
+lib64/libvcodec_cap.so
+lib64/libvcodec_capenc.so
+-priv-app/ImsService/ImsService.apk|4fcfd977593eb2d7a368c9c65d2737d53e75bbaa
+
 # Fingerprint
 vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service
 vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.rc
