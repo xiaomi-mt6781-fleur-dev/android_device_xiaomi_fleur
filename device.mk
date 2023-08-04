@@ -326,7 +326,7 @@ PRODUCT_PACKAGES += \
     FrameworksResOverlayFleur \
     SystemUIOverlayFleur \
     TelephonyOverlayFleur \
-    TetheringConfigOverlayfleur \
+    TetheringConfigOverlayFleur \
     WifiOverlayFleur
 
 # Power
