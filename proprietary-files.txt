@@ -1703,6 +1703,7 @@ vendor/lib64/libkeymaster41.so
 vendor/lib64/libkeymaster4_1support.so
 vendor/lib64/vendor.mediatek.hardware.keymaster_attestation@1.0.so
 vendor/lib64/vendor.mediatek.hardware.keymaster_attestation@1.1.so
+vendor/lib64/wechat.beanpod.so
 
 # Media
 etc/seccomp_policy/mediacodec.policy
