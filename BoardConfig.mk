@@ -96,6 +96,10 @@ TARGET_KERNEL_CONFIG := fleur_defconfig
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 
+BOARD_VENDOR_KERNEL_MODULES := \
+    $(foreach module,$(wildcard $(KERNEL_PATH)/modules/*.ko), \
+        $(module))
+
 # Kernel - prebuilt
 TARGET_FORCE_PREBUILT_KERNEL := true
 TARGET_PREBUILT_KERNEL := $(KERNEL_PATH)/Image.gz
