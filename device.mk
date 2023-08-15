@@ -156,6 +156,10 @@ PRODUCT_PACKAGES += \
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
+# Kernel
+PRODUCT_COPY_FILES += \
+    $(KERNEL_PATH)/dtb.img:dtb.img
+
 # fastbootd
 PRODUCT_PACKAGES += \
     fastbootd
