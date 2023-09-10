@@ -103,18 +103,9 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.5.vendor \
     android.hardware.camera.provider@2.6.vendor \
 
-PRODUCT_PACKAGES += \
-    libdng_sdk.vendor
-
-PRODUCT_PACKAGES += \
-    libshim_utils
-
 # Charger
 PRODUCT_PACKAGES += \
     libsuspend
-
-PRODUCT_PACKAGES += \
-    libshim_showlogo
 
 # Display
 TARGET_SCREEN_DENSITY := 392
@@ -134,23 +125,13 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.2.vendor \
     android.hardware.drm@1.3.vendor
 
-# Disable SF configstore
-PRODUCT_PACKAGES += \
-    disable_configstore
-
 # Display
 PRODUCT_PACKAGES += \
-    android.hardware.graphics.composer@2.1-service
-
-PRODUCT_PACKAGES += \
-    android.hardware.memtrack-service.mediatek-mali
-
-PRODUCT_PACKAGES += \
-    android.hardware.graphics.common@1.2.vendor \
-    android.hardware.graphics.mapper@4.0.vendor \
-    android.hardware.graphics.allocator@4.0.vendor
-
-PRODUCT_PACKAGES += \
+    android.hardware.graphics.composer@2.1-service \
+    android.hardware.graphics.composer@2.1-resources.vendor:64 \
+    android.hardware.graphics.composer@2.1.vendor:64 \
+    android.hardware.memtrack@1.0-service \
+    android.hardware.memtrack@1.0-impl \
     libdrm.vendor
 
 # Dynamic Partitions
@@ -226,9 +207,6 @@ PRODUCT_BOOT_JARS += \
     mediatek-telephony-base \
     mediatek-telephony-common
 
-PRODUCT_PACKAGES += \
-    libshim_vtservice
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/privapp-permissions-com.mediatek.ims.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-com.mediatek.ims.xml
 
@@ -239,16 +217,14 @@ PRODUCT_PACKAGES += \
 
 # Keymaster
 PRODUCT_PACKAGES += \
-    android.hardware.keymaster@4.0.vendor
-
-PRODUCT_PACKAGES += \
-    libkeymaster4.vendor \
-    libkeymaster4support.vendor \
-    libpuresoftkeymasterdevice.vendor \
-    libsoft_attestation_cert.vendor
-
-PRODUCT_PACKAGES += \
-    libshim_beanpod
+    android.hardware.keymaster@4.1.vendor:64 \
+    libkeymaster4.vendor:64 \
+    libkeymaster41.vendor:64 \
+    libkeymaster4support.vendor:64 \
+    libkeymaster_messages.vendor:64 \
+    libkeymaster_portable.vendor:64 \
+    libkeystore-engine-wifi-hidl:64 \
+    libkeystore-wifi-hidl
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -305,10 +281,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.se.omapi.ese.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_nfc/android.hardware.se.omapi.ese.xml \
     frameworks/native/data/etc/com.android.nfc_extras.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_nfc/com.android.nfc_extras.xml
 
-# Pcap
-PRODUCT_PACKAGES += \
-    libpcap.vendor
-
 # Public libraries
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
@@ -329,25 +301,16 @@ PRODUCT_PACKAGES += \
     TelephonyOverlayFleur \
     TetheringConfigOverlayFleur \
     WifiOverlayFleur
-
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power-service.mediatek-libperfmgr
-
-PRODUCT_PACKAGES += \
-    libmtkperf_client_vendor \
-    libmtkperf_client
-
-PRODUCT_PACKAGES += \
-    vendor.mediatek.hardware.mtkpower@1.0.vendor \
-    vendor.mediatek.hardware.mtkpower@1.1.vendor \
-    vendor.mediatek.hardware.mtkpower@1.2-service.stub
-
-PRODUCT_PACKAGES += \
+    android.hardware.power-service-mediatek \
+    android.hardware.power-V2-ndk_platform.vendor \
     android.hardware.power@1.0.vendor \
     android.hardware.power@1.1.vendor \
     android.hardware.power@1.2.vendor \
-    android.hardware.power@1.3.vendor
+    vendor.mediatek.hardware.mtkpower@1.0.vendor \
+    vendor.mediatek.hardware.mtkpower@1.1.vendor \
+    vendor.mediatek.hardware.mtkpower@1.2.vendor
 
 # Properties
 include $(LOCAL_PATH)/vendor_logtag.mk
@@ -448,9 +411,7 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Thermal
 PRODUCT_PACKAGES += \
-    android.hardware.thermal@1.0-impl
-
-PRODUCT_PACKAGES += \
+    android.hardware.thermal@1.0-impl\
     android.hardware.thermal@2.0.vendor
 
 # USB
