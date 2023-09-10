@@ -424,12 +424,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.vibrator-service.fleur
 
-# VNDK
-PRODUCT_PACKAGES += \
-    libutils-v32 \
-    libhidlbase-v32 \
-    libui-v32
-
 # Wi-Fi
 PRODUCT_PACKAGES += \
     android.hardware.wifi.supplicant@1.0.vendor \
