@@ -1,5 +1,11 @@
 # Unpinned blobs from fleur-user 12 SP1A.210812.016 V13.0.9.0.SKEMIXM release-keys
 
+# AAL
+vendor/lib/libaal_mtk.so
+vendor/lib/libaalservice.so
+vendor/lib64/libaal_mtk.so
+vendor/lib64/libaalservice.so
+
 # Audio
 vendor/bin/hw/android.hardware.audio.service.mediatek
 vendor/etc/init/android.hardware.audio.service.mediatek.rc
