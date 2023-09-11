@@ -107,7 +107,7 @@ TARGET_PREBUILT_DTB := $(KERNEL_PATH)/dtb.img
 BOARD_PREBUILT_DTBOIMAGE := $(KERNEL_PATH)/dtbo.img
 
 # OTA assert
-TARGET_OTA_ASSERT_DEVICE := fleur,secret,maltose
+TARGET_OTA_ASSERT_DEVICE := fleur,miel
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072                   # 2048      * 64   (pagesize)
