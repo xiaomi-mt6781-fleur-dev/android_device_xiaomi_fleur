@@ -51,11 +51,21 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    android.hardware.audio.service.mediatek \
-    android.hardware.audio@6.0-impl \
-    android.hardware.audio.effect@6.0-impl \
-    android.hardware.bluetooth.audio-impl \
-    android.hardware.soundtrigger@2.3-impl
+    android.hardware.audio.service \
+    android.hardware.audio@7.1-impl:32
+
+PRODUCT_PACKAGES += \
+    android.hardware.audio.common-util.vendor \
+    android.hardware.audio.common@5.0.vendor \
+    android.hardware.audio.common@6.0-util.vendor \
+    android.hardware.audio.common@6.0.vendor \
+    android.hardware.audio.common@7.0-enums.vendor \
+    android.hardware.audio.common@7.0-util.vendor \
+    android.hardware.audio@6.0.vendor \
+    android.hardware.audio@7.0-util.vendor \
+    android.hardware.audio@7.0.vendor \
+    android.hardware.audio.effect@7.0.vendor \
+    android.hardware.audio.effect@7.0-impl:32
 
 PRODUCT_PACKAGES += \
     audio.bluetooth.default \
@@ -90,8 +100,11 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0.vendor \
-    android.hardware.bluetooth@1.1.vendor \
+    android.hardware.bluetooth.audio-impl \
+    android.hardware.bluetooth@1.1.vendor
+
+PRODUCT_PACKAGES += \
+    audio.bluetooth.default \
     libbluetooth_audio_session
 
 # Camera
@@ -119,9 +132,6 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.4-service.clearkey
 
 PRODUCT_PACKAGES += \
-    libmockdrmcryptoplugin
-
-PRODUCT_PACKAGES += \
     android.hardware.drm@1.0.vendor \
     android.hardware.drm@1.1.vendor \
     android.hardware.drm@1.2.vendor \
@@ -139,7 +149,7 @@ PRODUCT_PACKAGES += \
 # Dumpstate
 PRODUCT_PACKAGES += \
     android.hardware.dumpstate@1.1.vendor:64
-	
+
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
@@ -189,10 +199,6 @@ PRODUCT_PACKAGES += \
 
 # HIDL
 PRODUCT_PACKAGES += \
-    android.hidl.base@1.0 \
-    android.hidl.allocator@1.0 \
-    android.hidl.base@1.0.vendor \
-    android.hidl.allocator@1.0.vendor \
     libhidltransport \
     libhidltransport.vendor \
     libhwbinder \
@@ -307,15 +313,12 @@ PRODUCT_PACKAGES += \
     TelephonyOverlayFleur \
     TetheringConfigOverlayFleur \
     WifiOverlayFleur
+
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power-service-mediatek \
-    android.hardware.power-V2-ndk_platform.vendor \
-    android.hardware.power@1.0.vendor \
-    android.hardware.power@1.1.vendor \
-    android.hardware.power@1.2.vendor \
-    vendor.mediatek.hardware.mtkpower@1.0.vendor \
-    vendor.mediatek.hardware.mtkpower@1.1.vendor \
+    android.hardware.power-V2-ndk.vendor:64 \
+    android.hardware.power@1.2.vendor:64 \
     vendor.mediatek.hardware.mtkpower@1.2.vendor
 
 # Properties
@@ -363,17 +366,9 @@ PRODUCT_COPY_FILES += \
 
 # Radio
 PRODUCT_PACKAGES += \
-    android.hardware.radio@1.0.vendor \
+    android.hardware.radio.config@1.3.vendor:64 \
     android.hardware.radio@1.1.vendor \
-    android.hardware.radio@1.2.vendor \
-    android.hardware.radio@1.3.vendor \
-    android.hardware.radio@1.4.vendor \
-    android.hardware.radio@1.5.vendor \
-    android.hardware.radio.config@1.0.vendor \
-    android.hardware.radio.config@1.1.vendor \
-    android.hardware.radio.config@1.2.vendor \
-    android.hardware.radio.deprecated@1.0.vendor \
-    android.hardware.radio-V1.4-java
+    android.hardware.radio@1.6.vendor:64
 
 # Rootdir
 PRODUCT_PACKAGES += \
@@ -395,13 +390,8 @@ PRODUCT_PACKAGES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@2.1-service.multihal \
-    android.hardware.sensors@1.0.vendor \
-    android.hardware.sensors@2.0.vendor \
-    android.hardware.sensors@2.0-ScopedWakelock.vendor \
-    android.frameworks.sensorservice@1.0
-
-PRODUCT_PACKAGES += \
+    android.hardware.sensors-service.multihal \
+    android.frameworks.sensorservice@1.0.vendor \
     libsensorndkbridge
 
 # Shipping API level
