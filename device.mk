@@ -136,6 +136,10 @@ PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-impl \
     libdrm.vendor
 
+# Dumpstate
+PRODUCT_PACKAGES += \
+    android.hardware.dumpstate@1.1.vendor:64
+	
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
