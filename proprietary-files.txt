@@ -1655,8 +1655,6 @@ vendor/lib64/libTEECommon.so
 vendor/lib64/libimsg_log.so
 
 # GNSS
-vendor/bin/hw/android.hardware.gnss-service.mediatek
-vendor/etc/init/android.hardware.gnss-service.mediatek.rc
 vendor/lib/hw/gps.default.so
 vendor/lib64/hw/gps.default.so
 
