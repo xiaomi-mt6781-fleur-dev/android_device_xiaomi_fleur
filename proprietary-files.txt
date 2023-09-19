@@ -185,10 +185,14 @@ vendor/lib/libbluetooth_mtk.so
 vendor/lib/libbt-vendor.so
 vendor/lib/libnvram.so
 vendor/lib/libnvram_sec.so
+vendor/lib/vendor.mediatek.hardware.bluetooth.audio@2.1.so
+vendor/lib/vendor.mediatek.hardware.bluetooth.audio@2.2.so
 vendor/lib64/libbluetooth_mtk.so
 vendor/lib64/libbt-vendor.so
 vendor/lib64/libnvram.so
 vendor/lib64/libnvram_sec.so
+vendor/lib64/vendor.mediatek.hardware.bluetooth.audio@2.1.so
+vendor/lib64/vendor.mediatek.hardware.bluetooth.audio@2.2.so
 
 # Camera
 lib/vendor.mediatek.hardware.camera.isphal@1.0.so
