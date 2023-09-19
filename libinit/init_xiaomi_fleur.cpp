@@ -10,9 +10,9 @@
 
 #include "vendor_init.h"
 
-#define FINGERPRINT_FL "Redmi/fleur_global/fleur:12/SP1A.210812.016/V13.0.8.0.SKEMIXM:user/test-keys"
-#define FINGERPRINT_FLP "POCO/fleur_p_global/fleur:12/SP1A.210812.016/V13.0.8.0.SKEMIXM:user/release-keys"
-#define FINGERPRINT_ML "Redmi/miel_global/miel:12/SP1A.210812.016/V13.0.8.0.SKEMIXM:user/release-keys"
+#define FINGERPRINT_FL "Redmi/fleur_global/fleur:12/SP1A.210812.016/V13.0.9.0.SKEMIXM:user/test-keys"
+#define FINGERPRINT_FLP "POCO/fleur_p_global/fleur:12/SP1A.210812.016/V13.0.9.0.SKEMIXM:user/release-keys"
+#define FINGERPRINT_ML "Redmi/miel_global/miel:12/SP1A.210812.016/V13.0.9.0.SKEMIXM:user/release-keys"
 #define FINGERPRINT_MLP_IN "POCO/miel_p_in/miel:12/SP1A.210812.016/V13.0.5.0.SKEINXM:user/release-keys"
 #define FINGERPRINT_ML_IN "Redmi/miel_in/miel:12/SP1A.210812.016/V13.0.5.0.SKEINXM:user/release-keys"
 
@@ -21,7 +21,7 @@ static const variant_info_t fleur_info = {
     .sku_value = "fleur",
     .brand = "Redmi",
     .device = "fleur",
-    .marketname = "Redmi Note 11s",
+    .marketname = "Redmi Note 11S",
     .model = "2201117SY",
     .mod_device = "fleur_global",
     .build_fingerprint = FINGERPRINT_FL,
@@ -43,7 +43,7 @@ static const variant_info_t miel_info = {
     .sku_value = "miel",
     .brand = "Redmi",
     .device = "miel",
-    .marketname = "Redmi Note 11s",
+    .marketname = "Redmi Note 11S",
     .model = "2201117SG",
     .mod_device = "miel_global",
     .build_fingerprint = FINGERPRINT_ML,
@@ -54,7 +54,7 @@ static const variant_info_t miel_in_info = {
     .sku_value = "miel",
     .brand = "Redmi",
     .device = "miel",
-    .marketname = "Redmi Note 11s",
+    .marketname = "Redmi Note 11S",
     .model = "2201117SI",
     .mod_device = "miel_in",
     .build_fingerprint = FINGERPRINT_ML_IN,
