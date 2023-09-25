@@ -1767,16 +1767,6 @@ vendor/lib64/libsfplugin_ccodec_utils.so
 vendor/lib64/libstagefright_bufferpool@2.0.1.so
 vendor/lib64/libstagefrighthw.so
 
-# Media configs
-vendor/etc/media_codecs.xml
-vendor/etc/media_codecs_c2.xml
-vendor/etc/media_codecs_google_audio.xml
-vendor/etc/media_codecs_google_video_le.xml
-vendor/etc/media_codecs_mediatek_audio.xml
-vendor/etc/media_codecs_mediatek_video.xml
-vendor/etc/media_codecs_performance.xml
-vendor/etc/media_profiles_V1_0.xml
-
 # Neural networks
 vendor/bin/hw/android.hardware.neuralnetworks@1.3-service-mtk-neuron
 vendor/etc/init/android.hardware.neuralnetworks@1.3-service-mtk-neuron.rc
