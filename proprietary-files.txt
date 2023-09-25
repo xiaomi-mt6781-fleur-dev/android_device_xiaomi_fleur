@@ -7,10 +7,6 @@ vendor/lib64/libaal_mtk.so
 vendor/lib64/libaalservice.so
 
 # Audio
-vendor/bin/hw/android.hardware.audio.service.mediatek
-vendor/etc/init/android.hardware.audio.service.mediatek.rc
-vendor/lib/hw/android.hardware.audio.effect@6.0-impl.so
-vendor/lib/hw/android.hardware.audio.effect@7.0-impl.so
 vendor/lib/hw/audio.primary.default.so
 vendor/lib/hw/audio.primary.mt6781.so
 vendor/lib/hw/audio.r_submix.default.so
@@ -31,12 +27,6 @@ vendor/lib/libshmemutil.so
 vendor/lib/shared-file-region-aidl-cpp.so
 vendor/lib/vendor.mediatek.hardware.audio@6.1.so
 vendor/lib/vendor.mediatek.hardware.audio@7.1.so
-vendor/lib64/hw/android.hardware.audio.effect@6.0-impl.so
-vendor/lib64/hw/android.hardware.audio.effect@7.0-impl.so
-vendor/lib64/hw/audio.primary.default.so
-vendor/lib64/hw/audio.primary.mt6781.so
-vendor/lib64/hw/audio.r_submix.default.so
-vendor/lib64/hw/audio.r_submix.mt6781.so
 vendor/lib64/hw/audio.usb.default.so
 vendor/lib64/audio_common-aidl-cpp.so
 vendor/lib64/audioclient-types-aidl-cpp.so
