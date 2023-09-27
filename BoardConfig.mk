@@ -95,10 +95,7 @@ TARGET_KERNEL_SOURCE := kernel/xiaomi/mt6781-headers
 TARGET_KERNEL_CONFIG := fleur_defconfig
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_KERNEL_IMAGE_NAME := Image.gz
-
-BOARD_VENDOR_KERNEL_MODULES := \
-    $(foreach module,$(wildcard $(KERNEL_PATH)/modules/*.ko), \
-        $(module))
+BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(KERNEL_PATH)/modules/*.ko)
 
 # Kernel - prebuilt
 TARGET_FORCE_PREBUILT_KERNEL := true
