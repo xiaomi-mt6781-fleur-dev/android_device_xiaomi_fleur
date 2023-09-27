@@ -87,7 +87,7 @@
 /dev/vcu    0660 camera system
 
 # add the read write right of ttyUSB*
-/dev/bus/usb/*     	  0660   root       usb
+/dev/bus/usb/*            0660   root       usb
 /dev/ttyUSB0              0660   radio      radio
 /dev/ttyUSB1              0660   radio      radio
 /dev/ttyUSB2              0660   radio      radio
