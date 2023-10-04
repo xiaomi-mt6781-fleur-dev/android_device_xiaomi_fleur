@@ -54,6 +54,7 @@ if [ -z "${SRC}" ]; then
 fi
 
 function blob_fixup {
+<<<<<<< HEAD
     case "$1" in
     vendor/lib/hw/vendor.mediatek.hardware.pq@2.13-impl.so)
         ;&
@@ -71,6 +72,11 @@ function blob_fixup {
     vendor/bin/hw/android.hardware.media.c2@1.2-mediatek-64b)
        "$PATCHELF" --replace-needed "libavservices_minijail_vendor.so" "libavservices_minijail.so" "$2"
         ;;
+    vendor/lib*/libwvhidl.so | vendor/lib*/mediadrm/libwvdrmengine.so)
+        grep -q "libprotobuf-cpp-lite-3.9.1.so" "${2}" && \
+        ${PATCHELF}" --replace-needed "libprotobuf-cpp-lite-3.9.1.so" "libprotobuf-cpp-full-3.9.1.so" "${2}"
+        ;;
+		
     esac
 }
 
