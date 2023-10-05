@@ -21,11 +21,6 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # A/B
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.2-service \
-    android.hardware.boot@1.2-mtkimpl \
-    android.hardware.boot@1.2-mtkimpl.recovery
-
-PRODUCT_PACKAGES += \
     update_engine \
     update_engine_sideload \
     update_verifier
@@ -100,6 +95,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     audio.bluetooth.default \
     libbluetooth_audio_session
+
+# Boot Control
+PRODUCT_PACKAGES += \
+    android.hardware.boot-service.default \
+    android.hardware.boot-service.default_recovery
+
+# CAS
+PRODUCT_PACKAGES += \
+    android.hardware.cas@1.2-service-lazy
 
 # Camera
 PRODUCT_PACKAGES += \
