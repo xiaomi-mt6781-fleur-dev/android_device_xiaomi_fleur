@@ -1676,6 +1676,9 @@ vendor/etc/init/android.hardware.neuralnetworks@1.3-service-mtk-neuron.rc
 vendor/lib64/libneuron_adapter.so
 vendor/lib64/libneuron_platform.so
 
+# Power-Hardware
+vendor/lib64/hw/power.default.so
+
 # Sensors
 vendor/etc/elliptic_sensor.xml
 vendor/lib/android.hardware.sensors@1.0.so
