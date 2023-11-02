@@ -51,32 +51,26 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    android.hardware.audio.service \
-    android.hardware.audio@7.1-impl:32
-
-PRODUCT_PACKAGES += \
-    android.hardware.audio.common-util.vendor \
-    android.hardware.audio.common@5.0.vendor \
-    android.hardware.audio.common@6.0-util.vendor \
-    android.hardware.audio.common@6.0.vendor \
-    android.hardware.audio.common@7.0-enums.vendor \
-    android.hardware.audio.common@7.0-util.vendor \
+    android.hardware.audio.service.mediatek \
+    android.hardware.audio@7.0-impl \
     android.hardware.audio@6.0.vendor \
     android.hardware.audio@7.0-util.vendor \
-    android.hardware.audio@7.0.vendor \
-    android.hardware.audio.effect@7.0.vendor \
-    android.hardware.audio.effect@7.0-impl:32
-
-PRODUCT_PACKAGES += \
-    audio.bluetooth.default \
+    android.hardware.audio.common@5.0.vendor \
+    android.hardware.audio.common@6.0.vendor \
+    android.hardware.audio.common@6.0-util.vendor \
+    android.hardware.audio.common@7.0.vendor \
+    android.hardware.audio.common@7.0-enums.vendor \
+    android.hardware.audio.common@7.0-util.vendor \
+    android.hardware.audio.common-util.vendor \
+    android.hardware.audio.effect@6.0-impl \
+    android.hardware.audio.effect@7.0-impl \
+    audio.primary.default \
     audio.r_submix.default \
-    audio.usb.default
-
-PRODUCT_PACKAGES += \
-    libalsautils_legacy \
-    libtinycompress \
-    libtinyxml \
-    tinymix
+    audio.usb.default \
+    audio_policy.stub \
+    libalsautils \
+    libaudiofoundation.vendor \
+    libbluetooth_audio_session
 
 PRODUCT_PACKAGES += \
     MtkInCallService
@@ -425,10 +419,6 @@ PRODUCT_PACKAGES += \
 # VNDK
 PRODUCT_PACKAGES += \
     libutils-v32
-
-# WiFi
-PRODUCT_PACKAGES += \
-    android.hardware.vibrator-service.fleur
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
