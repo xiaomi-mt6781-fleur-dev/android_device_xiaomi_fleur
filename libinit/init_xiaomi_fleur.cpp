@@ -10,11 +10,11 @@
 
 #include "vendor_init.h"
 
-#define FINGERPRINT_FL "Redmi/fleur_global/fleur:12/SP1A.210812.016/V13.0.9.0.SKEMIXM:user/test-keys"
-#define FINGERPRINT_FLP "POCO/fleur_p_global/fleur:12/SP1A.210812.016/V13.0.9.0.SKEMIXM:user/release-keys"
-#define FINGERPRINT_ML "Redmi/miel_global/miel:12/SP1A.210812.016/V13.0.9.0.SKEMIXM:user/release-keys"
-#define FINGERPRINT_MLP_IN "POCO/miel_p_in/miel:12/SP1A.210812.016/V13.0.5.0.SKEINXM:user/release-keys"
-#define FINGERPRINT_ML_IN "Redmi/miel_in/miel:12/SP1A.210812.016/V13.0.5.0.SKEINXM:user/release-keys"
+#define FINGERPRINT_FL "Redmi/fleur_global/fleur:13/SP1A.210812.016/V14.0.5.0.TKEMIXM:user/test-keys"
+#define FINGERPRINT_FLP "POCO/fleur_p_global/fleur:13/SP1A.210812.016/V14.0.5.0.TKEMIXM:user/release-keys"
+#define FINGERPRINT_ML "Redmi/miel_global/miel:13/SP1A.210812.016/V14.0.5.0.TKEMIXM:user/release-keys"
+#define FINGERPRINT_MLP_IN "POCO/miel_p_in/miel:13/SP1A.210812.016/V14.0.4.0.TKEINXM:user/release-keys"
+#define FINGERPRINT_ML_IN "Redmi/miel_in/miel:13/SP1A.210812.016/V14.0.4.0.TKEINXM:user/release-keys"
 
 static const variant_info_t fleur_info = {
     .hwc_value = "Global",
