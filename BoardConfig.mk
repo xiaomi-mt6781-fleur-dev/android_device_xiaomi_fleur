@@ -149,8 +149,8 @@ TARGET_BOARD_PLATFORM := mt6781
 BOARD_HAS_MTK_HARDWARE := true
 BOARD_HAVE_MTK_FM := true
 
-# Power
-TARGET_TAP_TO_WAKE_NODE := "/proc/tp_gesture"
+# Power HAL Ext
+TARGET_POWERHAL_MODE_EXT := $(DEVICE_PATH)/power/power-ext.cpp
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
