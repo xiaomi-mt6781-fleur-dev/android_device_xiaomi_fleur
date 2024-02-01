@@ -34,7 +34,7 @@ static const variant_info_t fleurp_info = {
     .device = "fleur",
     .marketname = "POCO M4 Pro",
     .model = "2201117PG",
-    .mod_device = "fleur_p_global",
+    .mod_device = "fleur_global",
     .build_fingerprint = FINGERPRINT_FLP,
 };
 
@@ -45,7 +45,7 @@ static const variant_info_t miel_info = {
     .device = "miel",
     .marketname = "Redmi Note 11S",
     .model = "2201117SG",
-    .mod_device = "miel_global",
+    .mod_device = "fleur_global",
     .build_fingerprint = FINGERPRINT_ML,
 };
 
@@ -56,7 +56,7 @@ static const variant_info_t miel_in_info = {
     .device = "miel",
     .marketname = "Redmi Note 11S",
     .model = "2201117SI",
-    .mod_device = "miel_in",
+    .mod_device = "fleur_in_global",
     .build_fingerprint = FINGERPRINT_ML_IN,
 };
 
@@ -67,7 +67,7 @@ static const variant_info_t mielp_info = {
     .device = "miel",
     .marketname = "POCO M4 Pro",
     .model = "2201117PI",
-    .mod_device = "miel_p_in",
+    .mod_device = "fleur_in_global",
     .build_fingerprint = FINGERPRINT_MLP_IN,
 };
 
