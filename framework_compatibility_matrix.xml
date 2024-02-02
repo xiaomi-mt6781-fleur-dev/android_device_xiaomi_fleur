@@ -361,20 +361,6 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="aidl" optional="true">
-        <name>android.hardware.memtrack</name>
-        <interface>
-            <name>IMemtrack</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="aidl" optional="true">
-        <name>android.hardware.power</name>
-        <interface>
-            <name>IPower</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
     <hal format="hidl" optional="true">
         <name>android.hardware.radio.config</name>
         <version>1.0-3</version>
@@ -403,13 +389,6 @@
         <version>1.0-1</version>
         <interface>
             <name>IOffloadControl</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="aidl" optional="true">
-        <name>android.hardware.vibrator</name>
-        <interface>
-            <name>IVibrator</name>
             <instance>default</instance>
         </interface>
     </hal>
