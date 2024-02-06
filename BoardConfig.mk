@@ -10,7 +10,6 @@ KERNEL_PATH := kernel/xiaomi/fleur-prebuilt
 # A/B
 AB_OTA_UPDATER := true
 BOARD_USES_RECOVERY_AS_BOOT := true
-BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 
 AB_OTA_PARTITIONS := \
     boot \
