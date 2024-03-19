@@ -115,9 +115,6 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.6.vendor \
     libcamera2ndk_vendor
 
-PRODUCT_PACKAGES += \
-    libcamera_metadata_shim
-
 # Cgroup
 PRODUCT_COPY_FILES += \
     system/core/libprocessgroup/profiles/cgroups_30.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
