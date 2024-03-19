@@ -1,22 +1,20 @@
 # MTK platform .rc configure
 
-import ${ro.vendor.rc}init.connectivity.rc
-import ${ro.vendor.rc}init.mt6781.usb.rc
+import /vendor/etc/init/hw/init.connectivity.rc
+import /vendor/etc/init/hw/init.mt6781.usb.rc
 import /vendor/etc/init/hw/init.project.rc
-import /system_ext/etc/init/hw/init.aee.rc
 import /FWUpgradeInit.rc
-import /vendor/etc/init/hw/init.aee.rc
-import ${ro.vendor.rc}init.volte.rc
-import ${ro.vendor.rc}init.mal.rc
-import ${ro.vendor.rc}init.sensor_1_0.rc
+import /vendor/etc/init/hw/init.volte.rc
+import /vendor/etc/init/hw/init.mal.rc
+import /vendor/etc/init/hw/init.sensor_1_0.rc
 import /vendor/etc/init/hw/init.stnfc.rc
 import /system/etc/init/hw/init.stnfc.rc
 import init.mishow.ctl.rc
-import ${ro.vendor.rc}init.cgroup.rc
+import /vendor/etc/init/hw/init.cgroup.rc
 
 
 # init.modem.rc must be the LAST rc file because vold.post_fs_data_done is set in it
-import ${ro.vendor.rc}init.modem.rc
+import /vendor/etc/init/hw/init.modem.rc
 # *** DO NOT import the new rc file after this line ***
 
 on early-init
@@ -24,8 +22,6 @@ on early-init
     # boot perf. tune
     write /proc/perfmgr/boost_ctrl/cpu_ctrl/boot_freq "0 0 0 0"
     write /sys/devices/platform/boot_dramboost/dramboost/dramboost 1
-    mount debugfs debugfs /sys/kernel/debug
-    chmod 0755 /sys/kernel/debug
 
 on init
     write /proc/bootprof "INIT:init"
@@ -56,7 +52,7 @@ on init
     write /dev/cpuset/foreground/cpus 0-7
     write /dev/cpuset/foreground/boost/cpus 0-7
     write /dev/cpuset/background/cpus 0-3
-    write /dev/cpuset/system-background/cpus 0-5
+    write /dev/cpuset/system-background/cpus 0-3
     write /dev/cpuset/top-app/cpus 0-7
 
 on late-init
@@ -147,7 +143,7 @@ on fs
     write /proc/sys/vm/page-cluster 0
     write /proc/sys/vm/swappiness 100
     write /sys/kernel/mm/swap/vma_ra_enabled false
-    swapon_all /vendor/fstab.enableswap
+    swapon_all /vendor/etc/fstab.mt6781
 	#Thermal
     mkdir /data/vendor/.tp/ 0775 system system
     mkdir /data/vendor/thermal 0771 root system
@@ -251,6 +247,13 @@ on property:sys.boot_completed=1
     # allow ccci_mdinit access ccci_dump
     chown root system /proc/ccci_dump
 
+service charger /system/bin/charger
+    class charger
+    critical
+    #seclabel u:r:charger:s0
+    group system graphics
+    seclabel u:r:healthd:s0
+
 on post-fs-data
     write /proc/bootprof "INIT:post-fs-data"
 
@@ -298,6 +301,10 @@ on post-fs-data
     chown root system /mnt/vendor/nvdata
     chmod 0771 /mnt/vendor/nvdata
     mkdir /mnt/vendor/nvdata/media 0771 media audio
+
+    # AudioDump
+    mkdir /data/vendor/audiohal 0771 system audio
+    mkdir /data/vendor/audiohal/audio_param 0771 system audio
 
     #Create cct mount point
     mkdir /mnt/vendor/cct
@@ -401,6 +408,10 @@ on post-fs-data
     chown root diag /sys/module/tpd_debug/parameters/tpd_em_log
     chown root diag /sys/module/tpd_debug/parameters/tpd_em_log_to_fs
 
+    #touch funtions permissions setting
+    chown system system /sys/class/touch/touch_dev/palm_sensor
+    chmod 0664 /sys/class/touch/touch_dev/palm_sensor
+
     chmod 0666 /dev/pmem_multimedia
 
     # set ptmx group to non-root
@@ -427,7 +438,7 @@ on post-fs-data
     setrlimit 8 -1 -1
 
     # CMDQ
-    chmod 0640 /dev/mtk_cmdq
+    chmod 0644 /dev/mtk_cmdq
     chown system system /dev/mtk_cmdq
 
     # MTK MDP
@@ -435,7 +446,7 @@ on post-fs-data
     chown system system /dev/mtk_mdp
 
     # MDP SYNC
-    chmod 0640 /dev/mdp_sync
+    chmod 0644 /dev/mdp_sync
     chown system system /dev/mdp_sync
 
     #OFFLOAD SERVICE
@@ -461,6 +472,9 @@ on post-fs-data
 
     #Fingerprint
     chmod 0666 /dev/goodix_fp
+    mkdir /data/vendor/fpc 0777 system system
+    mkdir /data/vendor/goodix 0777 system system
+
 
     #vdec-fmt
     chmod 0660 /dev/vdec-fmt
@@ -471,10 +485,10 @@ on post-fs-data
     #VideoCodec
     chmod 0660 /dev/vcu
     chown media system /dev/vcu
-    chmod 0660 /dev/video0
-    chown media system /dev/video0
-    chmod 0660 /dev/video1
-    chown media system /dev/video1
+    chmod 0666 /dev/video0
+    chown mediacodec system /dev/video0
+    chmod 0666 /dev/video1
+    chown mediacodec system /dev/video1
     mkdir /data/vendor/vcodec 0777 media system
     mkdir /data/vendor/vcodec/log 0770 media system
     mkdir /data/vendor/vcodec/in 0770 media system
@@ -1043,6 +1057,16 @@ on property:vold.decrypt=trigger_shutdown_framework
     setprop sys.boot_completed 0
     setprop dev.bootcomplete 0
 
+    # Fingerprint
+    chown system system /sys/devices/platform/1100a000.spi0/spi_master/spi0/spi0.0/irq
+    chown system system /sys/devices/platform/1100a000.spi0/spi_master/spi0/spi0.0/wakeup_enable
+    chown system system /sys/devices/platform/1100a000.spi0/spi_master/spi0/spi0.0/modalias
+    chown system system /sys/devices/platform/1100a000.spi0/spi_master/spi0/spi0.0/clk_enable
+    chown system system /sys/devices/platform/1100a000.spi0/spi_master/spi0/spi0.0/authen_fd/performance
+
+    chmod 0644 /dev/goodix_fp
+    chown system system /dev/goodix_fp
+
 # Stop bootprof
 on property:sys.boot_completed=1
     write /proc/bootprof "0"
@@ -1080,7 +1104,23 @@ on property:sys.boot_completed=1
     write /proc/sys/net/ipv4/ip_no_pmtu_disc 0
     # stop bootprof
     write /proc/bootprof 0
+    write /dev/stune/top-app/schedtune.boost 1
 
+# TouchPad settings
+    on property:sys.tp.grip_enable=0
+	write /proc/tp_grip_area 0
+	on property:sys.tp.grip_enable=1
+	write /proc/tp_grip_area 1
+	on property:sys.tp.grip_enable=90
+	write /proc/tp_grip_area 90
+	on property:sys.tp.grip_enable=180
+	write /proc/tp_grip_area 180
+	on property:sys.tp.grip_enable=270
+	write /proc/tp_grip_area 270
+
+# initialize powerHAL when boot is completed
+on property:sys.boot_completed=1
+    setprop vendor.mediatek.powerhal.init 1
 
 #service dpfd /vendor/bin/dpfd
 #	user root
