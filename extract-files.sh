@@ -49,52 +49,41 @@ while [ "${#}" -gt 0 ]; do
     shift
 done
 
+function blob_fixup {
+    case "$1" in
+        vendor/lib64/hw/android.hardware.sensors@2.X-subhal-mediatek.so)
+            "${PATCHELF}" --replace-needed "libsensorndkbridge.so" "libsensorndkbridge-hidl.so" "$2"
+            ;;
+        lib64/libsink.so)
+            "${PATCHELF}" --add-needed "libshim_sink.so" "$2"
+            ;;
+        vendor/lib*/hw/vendor.mediatek.hardware.pq@2.13-impl.so)
+            "$PATCHELF" --replace-needed "libutils.so" "libutils-v32.so" "$2"
+            ;;
+        vendor/bin/mnld)
+            "${PATCHELF}" --replace-needed "libsensorndkbridge.so" "libsensorndkbridge-hidl.so" "$2"
+            ;;
+        vendor/lib*/libaalservice.so)
+            "${PATCHELF}" --replace-needed "libsensorndkbridge.so" "libsensorndkbridge-hidl.so" "$2"
+            ;;
+        vendor/lib64/hw/android.hardware.sensors@2.X-subhal-mediatek.so)
+            "${PATCHELF}" --replace-needed "libsensorndkbridge.so" "libsensorndkbridge-hidl.so" "$2"
+            ;;
+        vendor/bin/hw/android.hardware.media.c2@1.2-mediatek)
+            "${PATCHELF}" --add-needed "libstagefright_foundation-v33.so" "${2}"
+            ;;
+        vendor/bin/hw/android.hardware.media.c2@1.2-mediatek-64b)
+           "${PATCHELF}" --replace-needed "libcodec2_hidl@1.0.so" "libcodec2_hidl-mtk@1.0.so" "${2}"
+            ;;
+        vendor/bin/hw/vendor.mediatek.hardware.mtkpower@1.0-service)
+            "${PATCHELF}" --replace-needed "android.hardware.power-V2-ndk_platform.so" "android.hardware.power-V2-ndk.so" "${2}"
+            ;;
+    esac
+}
+
 if [ -z "${SRC}" ]; then
     SRC="adb"
 fi
-
-function blob_fixup {
-    case "$1" in
-    system/lib*/libsink.so)
-		grep -q "libshim_sink.so" "${2}" || \
-		"${PATCHELF}" --add-needed "libshim_sink.so" "${2}"
-		;;
-    vendor/bin/hw/android.hardware.gnss-service.mediatek |\
-    vendor/lib64/hw/android.hardware.gnss-impl-mediatek.so)
-        "$PATCHELF" --replace-needed "android.hardware.gnss-V1-ndk_platform.so" "android.hardware.gnss-V1-ndk.so" "$2"
-        ;;
-    vendor/lib/hw/vendor.mediatek.hardware.pq@2.13-impl.so)
-        ;&
-    vendor/lib64/hw/vendor.mediatek.hardware.pq@2.13-impl.so)
-        "${PATCHELF}" --replace-needed "libutils.so" "libutils-v32.so" "${2}"
-        ;;
-    vendor/bin/hw/vendor.mediatek.hardware.mtkpower@1.0-service)
-        "$PATCHELF" --replace-needed "android.hardware.power-V2-ndk_platform.so" "android.hardware.power-V2-ndk.so" "${2}"
-        ;;
-    vendor/etc/init/vendor.mediatek.hardware.mtkpower@1.0-service.rc)
-        echo "$(cat ${2}) input" > "${2}"
-        ;;
-    vendor/bin/hw/android.hardware.media.c2@1.2-mediatek)
-        ;&
-    vendor/bin/hw/android.hardware.media.c2@1.2-mediatek-64b)
-       "$PATCHELF" --replace-needed "libavservices_minijail_vendor.so" "libavservices_minijail.so" "$2"
-	   	grep -q "libstagefright_foundation-v33.so" "${2}" || \
-		"${PATCHELF}" --add-needed "libstagefright_foundation-v33.so" "${2}"
-        ;;
-    vendor/lib*/libwvhidl.so | vendor/lib*/mediadrm/libwvdrmengine.so)
-        grep -q "libprotobuf-cpp-lite-3.9.1.so" "${2}" && \
-        "${PATCHELF}" --replace-needed "libprotobuf-cpp-lite-3.9.1.so" "libprotobuf-cpp-full-3.9.1.so" "${2}"
-        ;;
-	vendor/bin/mnld | vendor/lib*/libaalservice.so | vendor/lib*/libcam.utils.sensorprovider.so)
-		grep -q "libshim_sensors.so" "${2}" || \
-		"${PATCHELF}" --add-needed "libshim_sensors.so" "${2}"
-		;;
-	vendor/lib*/libmtkcam_stdutils.so)
-		grep -q "libutils.so" "${2}" && \
-		"${PATCHELF}" --replace-needed "libutils.so" "libutils-v32.so" "${2}"
-		;;
-	esac
-}
 
 # Initialize the helper
 setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" false "${CLEAN_VENDOR}"

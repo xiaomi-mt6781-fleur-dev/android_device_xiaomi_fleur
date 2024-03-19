@@ -30,16 +30,6 @@
         <fqname>@1.1::IBluetoothHci/default</fqname>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.bluetooth.audio</name>
-        <transport>hwbinder</transport>
-        <version>2.1</version>
-        <interface>
-            <name>IBluetoothAudioProvidersFactory</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@2.1::IBluetoothAudioProvidersFactory/default</fqname>
-    </hal>
-    <hal format="hidl">
         <name>android.hardware.camera.provider</name>
         <transport>hwbinder</transport>
         <version>2.6</version>
@@ -125,16 +115,6 @@
         <fqname>@1.0::IOmxStore/default</fqname>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.memtrack</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IMemtrack</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.0::IMemtrack/default</fqname>
-    </hal>
-    <hal format="hidl">
         <name>android.hardware.radio</name>
         <transport>hwbinder</transport>
         <version>1.2</version>
@@ -194,6 +174,16 @@
         <fqname>@1.0::IDevice/default</fqname>
     </hal>
     <hal format="hidl">
+        <name>android.hardware.soundtrigger</name>
+        <transport>hwbinder</transport>
+        <version>2.3</version>
+        <interface>
+            <name>ISoundTriggerHw</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@2.3::ISoundTriggerHw/default</fqname>
+    </hal>
+    <hal format="hidl">
         <name>android.hardware.tetheroffload.config</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -230,6 +220,10 @@
         <transport>hwbinder</transport>
         <version>1.0</version>
         <interface>
+            <name>IFingerprintEngineering</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
             <name>IFingerprintNavigation</name>
             <instance>default</instance>
         </interface>
@@ -237,6 +231,7 @@
             <name>IFingerprintSensorTest</name>
             <instance>default</instance>
         </interface>
+        <fqname>@1.0::IFingerprintEngineering/default</fqname>
         <fqname>@1.0::IFingerprintNavigation/default</fqname>
         <fqname>@1.0::IFingerprintSensorTest/default</fqname>
     </hal>
@@ -584,4 +579,5 @@
         </interface>
         <fqname>@1.0::ITouchFeature/default</fqname>
     </hal>
+    <kernel target-level="5"/>
 </manifest>
