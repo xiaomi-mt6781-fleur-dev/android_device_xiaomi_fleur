@@ -142,6 +142,10 @@ PRODUCT_PACKAGES += \
     libdrm \
     libutils-v32 \
 
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+TARGET_SCREEN_DENSITY := 392
+
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_BUILD_SUPER_PARTITION := false
@@ -361,6 +365,7 @@ PRODUCT_PACKAGES += \
     meta_init.project.rc \
     meta_init.rc \
     multi_init.rc \
+    ueventd.mt6781.rc \
     init.recovery.hardware.rc \
     init.recovery.mt6781.rc
 
