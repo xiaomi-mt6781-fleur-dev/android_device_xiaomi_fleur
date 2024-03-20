@@ -361,7 +361,6 @@ PRODUCT_PACKAGES += \
     meta_init.rc \
     multi_init.rc \
     ueventd.mt6781.rc \
-    init.recovery.hardware.rc \
     init.recovery.mt6781.rc
 
 PRODUCT_COPY_FILES += \
