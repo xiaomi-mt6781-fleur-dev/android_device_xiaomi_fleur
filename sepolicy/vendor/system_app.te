@@ -1,6 +1,10 @@
 allow system_app proc_pagetypeinfo:file r_file_perms;
 allow system_app sysfs_zram:dir search;
 allow system_app sysfs_zram:file r_file_perms;
+allow system_app proc_tp_gesture:file rw_file_perms;
+
+dontaudit system_app system_suspend_control_internal_service:service_manager find;
+dontaudit system_app system_suspend_control_service:service_manager find;
 
 # FM Radio
 get_prop(system_app, vendor_mtk_wmt_prop)

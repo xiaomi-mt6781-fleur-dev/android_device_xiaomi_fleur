@@ -1,6 +1,4 @@
-#
-# Connectivity related device nodes & configuration (begin)
-#
+# MTK connectivity .rc configure
 
 on post-fs-data
 
@@ -29,22 +27,6 @@ on post-fs-data
     chown bluetooth bluetooth /dev/ttyGS2
     chmod 0660 /dev/ttyGS2
 
-#
-# Connectivity related device nodes & configuration (end)
-#
-
-#
-# Connectivity related services (Begin)
-#
-
-# GPS
-service mnld /vendor/bin/mnld
-    class main
-    user gps
-    capabilities WAKE_ALARM
-    group gps inet misc sdcard_rw sdcard_r media_rw system radio wakelock
-    socket mnld stream 660 gps system
-
 # WMT
 service wmt_loader /vendor/bin/wmt_loader
     class early_hal
@@ -57,6 +39,11 @@ service wmt_launcher /vendor/bin/wmt_launcher -p /vendor/firmware/ -o 1
     user system
     group system
 
-#
-# Connectivity related services (End)
-#
+# GPS
+service mnld /vendor/bin/mnld
+    class main
+    user gps
+    capabilities WAKE_ALARM
+    group gps inet misc sdcard_rw sdcard_r media_rw system radio wakelock
+    socket mnld stream 660 gps system
+

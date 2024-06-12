@@ -1,5 +1,5 @@
 #
-# vendor.prop for mt6785
+# vendor.prop for mt6781
 #
 
 # ADB
@@ -66,7 +66,6 @@ ro.vendor.mtk_camera_app_version=3
 
 # DRM
 drm.service.enabled=true
-ro.netflix.bsp_rev=MTK6785-18758-1
 ro.vendor.mtk_widevine_drm_l1_support=1
 ro.vendor.mtk_sec_video_path_support=1
 
@@ -169,9 +168,8 @@ ro.vendor.mtk_hdr_video_support=1
 
 # MediaTek
 ro.vendor.mediatek.version.branch=alps-mp-s0.mp1.tc8sp-mt6785
-ro.vendor.mediatek.version.release=alps-mp-s0.mp1.tc8sp-mt6785-V1.12_xiaomi.s0mp1.k85v1.64_P11
-ro.vendor.mediatek.platform=MT6785
-persist.vendor.factory.GB2312=yes
+ro.vendor.mediatek.version.release=alps-mp-s0.mp1.tc8sp-mt6785-V1.12_xiaomi.s0mp1.k85v1.64_P42
+ro.netflix.bsp_rev=MTK6781-34066-1
 ro.vendor.mtk.sensor.support=yes
 ro.vendor.mtk_ovl_bringup=0
 

@@ -14,7 +14,7 @@
 // limitations under the License.
 
 cc_binary {
-    name: "android.hardware.sensors@2.1-service.rosemary-multihal",
+    name: "android.hardware.sensors@2.1-service.fleur-multihal",
     defaults: [
         "hidl_defaults",
     ],
@@ -26,8 +26,8 @@ cc_binary {
         "HalProxy.cpp",
         "HalProxyCallback.cpp",
     ],
-    init_rc: ["android.hardware.sensors@2.1-service.rosemary-multihal.rc"],
-    vintf_fragments: ["android.hardware.sensors@2.1-rosemary-multihal.xml"],
+    init_rc: ["android.hardware.sensors@2.1-service.fleur-multihal.rc"],
+    vintf_fragments: ["android.hardware.sensors@2.1-fleur-multihal.xml"],
     header_libs: [
         "android.hardware.sensors@2.X-shared-utils",
     ],

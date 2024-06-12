@@ -1,14 +1,14 @@
 #!/bin/bash
 #
 # Copyright (C) 2016 The CyanogenMod Project
-# Copyright (C) 2017-2023 The LineageOS Project
+# Copyright (C) 2017-2020 The LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
 
 set -e
 
-DEVICE=rosemary
+DEVICE=fleur
 VENDOR=xiaomi
 
 # Load extract_utils and do some sanity checks
@@ -27,15 +27,11 @@ source "${HELPER}"
 # Default to sanitizing the vendor folder before extraction
 CLEAN_VENDOR=true
 
-ONLY_FIRMWARE=
 KANG=
 SECTION=
 
 while [ "${#}" -gt 0 ]; do
     case "${1}" in
-        --only-firmware )
-                ONLY_FIRMWARE=true
-                ;;
         -n | --no-cleanup )
                 CLEAN_VENDOR=false
                 ;;
@@ -61,7 +57,7 @@ function blob_fixup {
     case "$1" in
         vendor/bin/mtk_agpsd)
            "${PATCHELF}" --replace-needed "libcrypto.so" "libcrypto-v32.so" "${2}"
-           "${PATCHELF}" --replace-needed "libssl.so" "libssl-v32.so" "${2}"           
+           "${PATCHELF}" --replace-needed "libssl.so" "libssl-v32.so" "${2}"
             ;;
         vendor/bin/hw/android.hardware.gnss-service.mediatek |\
         vendor/lib64/hw/android.hardware.gnss-impl-mediatek.so)
@@ -70,7 +66,7 @@ function blob_fixup {
         vendor/bin/hw/android.hardware.media.c2@1.2-mediatek)
             ;&
         vendor/bin/hw/android.hardware.media.c2@1.2-mediatek-64b)
-            "${PATCHELF}" --add-needed "libstagefright_foundation-v33.so" "${2}"
+            "${PATCHELF}" --replace-needed "libavservices_minijail_vendor.so" "libavservices_minijail.so" "${2}"
             ;;
         vendor/bin/hw/vendor.mediatek.hardware.mtkpower@1.0-service)
             "${PATCHELF}" --replace-needed "android.hardware.power-V2-ndk_platform.so" "android.hardware.power-V2-ndk.so" "${2}"
@@ -85,12 +81,6 @@ function blob_fixup {
         vendor/lib64/libmtkcam_stdutils.so)
             "${PATCHELF}" --replace-needed "libutils.so" "libutils-v32.so" "${2}"
             ;;
-        vendor/bin/mnld|\
-        vendor/lib*/libaalservice.so|\
-        vendor/lib*/libcam.utils.sensorprovider.so|\
-        vendor/lib*/librgbwlightsensor.so)
-            "$PATCHELF" --add-needed "libshim_sensors.so" "$2"
-            ;;
         vendor/lib*/hw/vendor.mediatek.hardware.pq@2.13-impl.so)
             "${PATCHELF}" --replace-needed "libutils.so" "libutils-v32.so" "${2}"
             ;;
@@ -103,18 +93,15 @@ function blob_fixup {
         system_ext/lib64/libsink.so)
             "${PATCHELF}" --add-needed "libshim_sink.so" "$2"
             ;;
+	vendor/etc/vintf/manifest/manifest_media_c2_V1_2_default.xml)
+	    sed -i 's/1.1/1.2/' "$2"
+       	    ;;
     esac
 }
 
 # Initialize the helper
 setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" false "${CLEAN_VENDOR}"
 
-if [ -z "${ONLY_FIRMWARE}" ]; then
-    extract "${MY_DIR}/proprietary-files.txt" "${SRC}" "${KANG}" --section "${SECTION}"
-fi
-
-if [ -z "${SECTION}" ]; then
-    extract_firmware "${MY_DIR}/proprietary-firmware.txt" "${SRC}"
-fi
+extract "${MY_DIR}/proprietary-files.txt" "${SRC}" "${KANG}" --section "${SECTION}"
 
 "${MY_DIR}/setup-makefiles.sh"

@@ -1,28 +1,22 @@
 libOpenCL.so
-libneuron_platform.so
-libion_mtk.so
-libvpu.so
-android.hidl.allocator@1.0.so
-libmpbase.so
-libmialgoengine.so
-libarcsoft_portrait_lighting.so
-libarcsoft_portrait_lighting_c.so
-libarcsoft_beautyshot.so
-libarcsoft_supernight.so
-libalCFR.so
-libmibokeh_mt6873.so
-libalhLDC.so
-libmiStereoFactoryRemapLib.so
-libanc_dc_plugin_xiaomi_v2.so
-libmiStereoFactoryRemapBasicLib.so
-libwa_dof.so
-libwa_rtdof.so
-libsdk_sr.so
-lib_sr_models.so
-libanc_dc_base.so
-libmialgo_utils.so
-vendor.mediatek.hardware.camera.isphal@1.0
-libxmi_high_dynamic_range.so
-libnir_neon_driver_ndk.mtk.vndk.so
-libcmdl_ndk.mtk.vndk.so
-libarmnn_ndk.mtk.vndk.so
+libmpbase.so 64
+libmialgoengine.so 64
+libarcsoft_beautyshot.so 64
+libarcsoft_super_night_raw.so 64
+libalCFR.so 64
+libmibokeh_mt6873.so 64
+libmiStereoFactoryRemapLib.so 64
+libanc_dc_plugin_xiaomi_v2.so 64
+libmiStereoFactoryRemapBasicLib.so 64
+libwa_rtdof.so 64
+libwa_refocus.so 64
+libwa_depth.so 64
+libanc_dc_base.so 64
+libmialgo_utils.so 64
+libarcsoft_high_dynamic_range.so 64
+libarcsoft_low_light_hdr.so 64
+libarcsoft_hdr_detection.so 64
+libwa_widelens_undistort.so 64
+vendor.mediatek.hardware.camera.isphal@1.0.so 64
+vendor.mediatek.hardware.camera.atms@1.0.so 64
+

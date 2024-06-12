@@ -2,7 +2,7 @@
 // SPDX-License-Identifer: Apache-2.0
 
 cc_library_static {
-    name: "android.hardware.vibrator-impl.rosemary",
+    name: "android.hardware.vibrator-impl.fleur",
     vendor: true,
     shared_libs: [
         "libbase",
@@ -20,10 +20,10 @@ cc_library_static {
 }
 
 cc_binary {
-    name: "android.hardware.vibrator-service.rosemary",
+    name: "android.hardware.vibrator-service.fleur",
     relative_install_path: "hw",
-    init_rc: ["vibrator-rosemary.rc"],
-    vintf_fragments: ["vibrator-rosemary.xml"],
+    init_rc: ["vibrator-fleur.rc"],
+    vintf_fragments: ["vibrator-fleur.xml"],
     vendor: true,
     shared_libs: [
         "libbase",
@@ -31,7 +31,7 @@ cc_binary {
         "android.hardware.vibrator-V2-ndk",
     ],
     static_libs: [
-        "android.hardware.vibrator-impl.rosemary",
+        "android.hardware.vibrator-impl.fleur",
     ],
     srcs: ["main.cpp"],
 }

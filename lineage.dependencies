@@ -12,7 +12,7 @@
     "target_path": "hardware/xiaomi"
   },
   {
-    "repository": "android_kernel_xiaomi_mt6785",
-    "target_path": "kernel/xiaomi/mt6785"
+    "repository": "android_kernel_xiaomi_mt6781",
+    "target_path": "kernel/xiaomi/mt6781"
   }
 ]

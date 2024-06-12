@@ -4,24 +4,19 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+KERNEL_PATH := kernel/xiaomi/fleur-prebuilt
+
 # Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 
 # Inherit virtual_ab_ota product
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
-# AAPT
-PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := xxhdpi
-
 # A/B
 PRODUCT_PACKAGES += \
-    com.android.hardware.boot \
-    android.hardware.boot-service.default_recovery
-
-PRODUCT_PACKAGES += \
-    create_pl_dev \
-    create_pl_dev.recovery
+    android.hardware.boot@1.2-impl \
+    android.hardware.boot@1.2-impl.recovery \
+    android.hardware.boot@1.2-service
 
 PRODUCT_PACKAGES += \
     update_engine \
@@ -69,20 +64,13 @@ PRODUCT_PACKAGES += \
     MtkInCallService
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio/audio_device.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_device.xml \
-    $(LOCAL_PATH)/configs/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
-    $(LOCAL_PATH)/configs/audio/audio_em.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_em.xml \
-    $(LOCAL_PATH)/configs/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
-    $(LOCAL_PATH)/configs/audio/audio_policy_configuration_bluetooth_legacy_hal.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration_bluetooth_legacy_hal.xml \
-    $(LOCAL_PATH)/configs/audio/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
-    $(LOCAL_PATH)/configs/audio/usb_audio_accessory_only_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_accessory_only_policy_configuration.xml
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/audio/,$(TARGET_COPY_OUT_VENDOR)/etc)
 
 PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/a2dp_in_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_in_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
-    frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml
 
 # Bluetooth
@@ -94,31 +82,28 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     android.hardware.camera.common@1.0.vendor \
+    android.hardware.camera.device@1.0.vendor \
+    android.hardware.camera.device@3.2.vendor \
     android.hardware.camera.device@3.3.vendor \
     android.hardware.camera.device@3.4.vendor \
     android.hardware.camera.device@3.5.vendor \
     android.hardware.camera.device@3.6.vendor \
     android.hardware.camera.provider@2.4.vendor \
     android.hardware.camera.provider@2.5.vendor \
-    android.hardware.camera.provider@2.6.vendor \
+    android.hardware.camera.provider@2.6.vendor
 
+# CAS
 PRODUCT_PACKAGES += \
-    libdng_sdk.vendor
+    android.hardware.cas@1.2-service-lazy
 
 # Cgroup
 PRODUCT_COPY_FILES += \
     system/core/libprocessgroup/profiles/cgroups_30.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
     $(LOCAL_PATH)/configs/task_profiles.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
 
-# Display
-TARGET_SCREEN_DENSITY := 440
-TARGET_SCREEN_HEIGHT := 2400
-TARGET_SCREEN_WIDTH := 1080
-
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm-service.clearkey \
-    libprotobuf-cpp-lite-3.9.1-vendorcompat
+    android.hardware.drm-service.clearkey
 
 PRODUCT_PACKAGES += \
     libmockdrmcryptoplugin
@@ -127,13 +112,11 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.3.vendor \
     android.hardware.drm@1.4.vendor
 
-# Disable SF configstore
-PRODUCT_PACKAGES += \
-    disable_configstore
-
 # Display
 PRODUCT_PACKAGES += \
-    android.hardware.graphics.composer@2.2-service
+    android.hardware.graphics.composer@2.1-service \
+    android.hardware.graphics.composer@2.1-resources.vendor \
+    android.hardware.graphics.composer@2.1.vendor
 
 PRODUCT_PACKAGES += \
     android.hardware.memtrack-service.mediatek-mali
@@ -146,6 +129,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libdrm \
     libdrm.vendor
+
+# DTB
+PRODUCT_COPY_FILES += \
+    $(KERNEL_PATH)/dtb.img:dtb.img
 
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -211,14 +198,14 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/privapp-permissions-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml
 
 # IMS
-PRODUCT_BOOT_JARS += \
-    mediatek-common \
-    mediatek-framework \
-    mediatek-ims-base \
-    mediatek-ims-common \
-    mediatek-telecom-common \
-    mediatek-telephony-base \
-    mediatek-telephony-common
+#PRODUCT_BOOT_JARS += \
+#    mediatek-common \
+#    mediatek-framework \
+#    mediatek-ims-base \
+#    mediatek-ims-common \
+#    mediatek-telecom-common \
+#    mediatek-telephony-base \
+#    mediatek-telephony-common
 
 PRODUCT_PACKAGES += \
     libshim_sink
@@ -240,7 +227,7 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light-service.rosemary
+    android.hardware.light-service.fleur
 
 # Lineage Health
 PRODUCT_PACKAGES += \
@@ -250,10 +237,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libcodec2_hidl@1.1.vendor \
     libcodec2_hidl@1.2.vendor \
-    libavservices_minijail_vendor \
     libstagefright_softomx_plugin.vendor \
     libsfplugin_ccodec_utils.vendor \
-    libcodec2_soft_common.vendor
+    libcodec2_soft_common.vendor \
+    libavservices_minijail.vendor
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
@@ -273,9 +260,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/seccomp/mediacodec.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
     $(LOCAL_PATH)/configs/seccomp/mediaextractor.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaextractor.policy \
     $(LOCAL_PATH)/configs/seccomp/mediaswcodec.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaswcodec.policy
-
-PRODUCT_PACKAGES += \
-    libstagefright_foundation-v33
 
 # Neural Networks
 PRODUCT_PACKAGES += \
@@ -302,13 +286,13 @@ PRODUCT_PACKAGES += \
     android.hardware.secure_element@1.2.vendor
 
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.nfc.ese.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_nfc/android.hardware.nfc.ese.xml \
-    frameworks/native/data/etc/android.hardware.nfc.hce.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_nfc/android.hardware.nfc.hce.xml \
-    frameworks/native/data/etc/android.hardware.nfc.hcef.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_nfc/android.hardware.nfc.hcef.xml \
-    frameworks/native/data/etc/android.hardware.nfc.uicc.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_nfc/android.hardware.nfc.uicc.xml \
-    frameworks/native/data/etc/android.hardware.nfc.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_nfc/android.hardware.nfc.xml \
-    frameworks/native/data/etc/android.hardware.se.omapi.ese.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_nfc/android.hardware.se.omapi.ese.xml \
-    frameworks/native/data/etc/com.android.nfc_extras.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_nfc/com.android.nfc_extras.xml
+    frameworks/native/data/etc/android.hardware.nfc.ese.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_fleur/android.hardware.nfc.ese.xml \
+    frameworks/native/data/etc/android.hardware.nfc.hce.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_fleur/android.hardware.nfc.hce.xml \
+    frameworks/native/data/etc/android.hardware.nfc.hcef.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_fleur/android.hardware.nfc.hcef.xml \
+    frameworks/native/data/etc/android.hardware.nfc.uicc.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_fleur/android.hardware.nfc.uicc.xml \
+    frameworks/native/data/etc/android.hardware.nfc.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_fleur/android.hardware.nfc.xml \
+    frameworks/native/data/etc/android.hardware.se.omapi.ese.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_fleur/android.hardware.se.omapi.ese.xml \
+    frameworks/native/data/etc/com.android.nfc_extras.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_fleur/com.android.nfc_extras.xml
 
 # Pcap
 PRODUCT_PACKAGES += \
@@ -328,13 +312,20 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
     $(LOCAL_PATH)/overlay-lineage
 
 PRODUCT_PACKAGES += \
-    CarrierConfigOverlayRosemary \
-    FrameworksResOverlayRosemary \
-    SettingsProviderOverlayRosemary \
-    SystemUIOverlayRosemary \
-    TelephonyOverlayRosemary \
-    TetheringConfigOverlayRosemary \
-    WifiOverlayRosemary
+    FrameworksResOverlayFleur \
+    TetheringOverlayFleur \
+    WifiOverlayFleur \
+    SystemUIOverlayFleur \
+    SettingsOverlayFleur
+
+PRODUCT_PACKAGES += \
+    NotchBarKiller
+
+PRODUCT_PACKAGES += \
+    FleurSettingsProviderOverlay \
+    FleurpSettingsProviderOverlay \
+    MielSettingsProviderOverlay \
+    MielpSettingsProviderOverlay
 
 # Power
 PRODUCT_PACKAGES += \
@@ -411,13 +402,14 @@ PRODUCT_PACKAGES += \
 
 # Rootdir
 PRODUCT_PACKAGES += \
-    fstab.mt6785 \
-    fstab.mt6785.ramdisk \
+    fstab.mt6781 \
+    fstab.mt6781.ramdisk \
     init.ago.rc \
     init.connectivity.rc \
     init.modem.rc \
-    init.mt6785.rc \
-    init.mt6785.usb.rc \
+    init.mt6781.rc \
+    init.mt6781.power.rc \
+    init.mt6781.usb.rc \
     init.project.rc \
     init.sensor_1_0.rc \
     init.stnfc.rc \
@@ -425,14 +417,14 @@ PRODUCT_PACKAGES += \
     ueventd.mtk.rc
 
 PRODUCT_PACKAGES += \
-    init.recovery.mt6785.rc \
-    init.recovery.mt6785.sh
+    init.recovery.mt6781.rc \
+    init.recovery.mt6781.sh
 
 # Sensors
 PRODUCT_PACKAGES += \
     android.frameworks.sensorservice@1.0 \
     android.frameworks.sensorservice@1.0.vendor \
-    android.hardware.sensors@2.1-service.rosemary-multihal \
+    android.hardware.sensors@2.1-service.fleur-multihal \
     android.hardware.sensors@1.0.vendor \
     android.hardware.sensors@2.0.vendor \
     android.hardware.sensors@2.1.vendor \
@@ -455,19 +447,18 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Thermal
 PRODUCT_PACKAGES += \
-    android.hardware.thermal-service.mediatek
+    android.hardware.thermal@1.0-impl
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
+PRODUCT_PACKAGES += \
+    android.hardware.thermal@2.0.vendor
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb-service.mediatek \
-    android.hardware.usb.gadget-service.mediatek
+    android.hardware.usb@1.3-service-mediatekv2
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator-service.rosemary
+    android.hardware.vibrator-service.fleur
 
 # VNDK
 PRODUCT_PACKAGES += \
@@ -477,10 +468,20 @@ PRODUCT_PACKAGES += \
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
+    android.hardware.wifi.supplicant@1.0.vendor \
+    android.hardware.wifi.supplicant@1.1.vendor \
+    android.hardware.wifi.supplicant@1.2.vendor \
+    android.hardware.wifi.supplicant@1.3.vendor \
+    android.hardware.wifi.hostapd@1.0.vendor \
+    android.hardware.wifi.hostapd@1.1.vendor \
+    android.hardware.wifi.hostapd@1.2.vendor
+
+PRODUCT_PACKAGES += \
+    libkeystore-wifi-hidl \
+    libkeystore-engine-wifi-hidl \
     wpa_supplicant \
     hostapd \
-    libwifi-hal-wrapper \
-    android.hardware.wifi-service
+    android.hardware.wifi@1.0-service-lazy.fleur
 
 PRODUCT_PACKAGES += \
     android.hardware.tetheroffload.config@1.0.vendor \
@@ -491,4 +492,4 @@ PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/wifi/,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)
 
 # Inherit the proprietary files
-$(call inherit-product, vendor/xiaomi/rosemary/rosemary-vendor.mk)
+$(call inherit-product, vendor/xiaomi/fleur/fleur-vendor.mk)

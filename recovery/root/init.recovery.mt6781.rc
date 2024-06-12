@@ -1,0 +1,8 @@
+on init
+    setprop sys.usb.ffs.aio_compat 1
+    setprop sys.usb.configfs 1
+
+service init-recovery-mt6781-sh /init.recovery.mt6781.sh
+    user root
+    group root
+    seclabel u:r:recovery:s0

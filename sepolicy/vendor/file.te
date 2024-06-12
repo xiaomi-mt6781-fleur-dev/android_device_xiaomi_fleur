@@ -7,6 +7,8 @@ type vendor_fingerprint_data_file, data_file_type, file_type;
 type vendor_fingerprint_device, dev_type;
 type sysfs_fingerprint, fs_type, sysfs_type;
 
+# Latency
+type latency_device, dev_type;
 
 # Health
 type vendor_sysfs_ac_supply, fs_type, sysfs_type;
@@ -20,5 +22,9 @@ type vendor_sysfs_main_supply, fs_type, sysfs_type;
 # Performance
 type proc_sched_stune, fs_type, proc_type;
 
+# PPS
+type pps_socket, file_type;
+
 # Touchpanel
 type sysfs_touchpanel, sysfs_type, fs_type;
+type proc_tp_gesture, fs_type, proc_type;

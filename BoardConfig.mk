@@ -4,7 +4,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-DEVICE_PATH := device/xiaomi/rosemary
+DEVICE_PATH := device/xiaomi/fleur
+KERNEL_PATH := kernel/xiaomi/fleur-prebuilt
 
 # A/B
 AB_OTA_UPDATER := true
@@ -45,7 +46,7 @@ TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
 
 # Bootloader
 BOARD_VENDOR := xiaomi
-TARGET_BOOTLOADER_BOARD_NAME := rosemary
+TARGET_BOOTLOADER_BOARD_NAME := fleur
 TARGET_NO_BOOTLOADER := true
 
 # Boot Image
@@ -69,37 +70,42 @@ BOARD_MKBOOTIMG_ARGS += --dtb_offset $(BOARD_DTB_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
-BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
 
 # Display
-TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS := 0x2000U
+TARGET_SCREEN_DENSITY := 392
 
 # File systems
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # HIDL
-ODM_MANIFEST_SKUS += nfc
-ODM_MANIFEST_NFC_FILES := $(DEVICE_PATH)/manifest_nfc.xml
+ODM_MANIFEST_SKUS += fleur
+ODM_MANIFEST_FLEUR_FILES := $(DEVICE_PATH)/manifest_fleur.xml
 
 # Init
-TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):init_rosemary
-TARGET_RECOVERY_DEVICE_MODULES := init_rosemary
+TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):init_fleur
+TARGET_RECOVERY_DEVICE_MODULES := init_fleur
 
 # Kernel
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
-TARGET_KERNEL_SOURCE := kernel/xiaomi/mt6785
-TARGET_KERNEL_CONFIG := rosemary_defconfig
+TARGET_KERNEL_SOURCE := kernel/xiaomi/mt6781
+TARGET_KERNEL_CONFIG := fleur_defconfig
 BOARD_KERNEL_SEPARATED_DTBO := true
-BOARD_CUSTOM_DTBOIMG_MK := $(DEVICE_PATH)/dtbo/dtbo.mk
 BOARD_KERNEL_IMAGE_NAME := Image.gz
+BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(KERNEL_PATH)/modules/*.ko)
+
+# Kernel - prebuilt
+TARGET_FORCE_PREBUILT_KERNEL := true
+TARGET_PREBUILT_KERNEL := $(KERNEL_PATH)/kernel
+TARGET_PREBUILT_DTB := $(KERNEL_PATH)/dtb.img
+BOARD_PREBUILT_DTBOIMAGE := $(KERNEL_PATH)/dtbo.img
 
 # Lineage Health
 TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_BYPASS := false
 
 # OTA assert
-TARGET_OTA_ASSERT_DEVICE := rosemary,rosemary_p,secret,secretr,maltose
+TARGET_OTA_ASSERT_DEVICE := fleur,fleur_p,miel,miel_p
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072                   # 2048      * 64   (pagesize)
@@ -118,7 +124,14 @@ BOARD_MAIN_PARTITION_LIST := \
     vendor
 
 # Reserve space for gapps install
--include vendor/lineage/config/BoardConfigReservedSize.mk
+ifneq ($(WITH_GMS),true)
+BOARD_PRODUCTIMAGE_EXTFS_INODE_COUNT := -1
+BOARD_PRODUCTIMAGE_PARTITION_RESERVED_SIZE := 614400000
+BOARD_SYSTEMIMAGE_EXTFS_INODE_COUNT := -1
+BOARD_SYSTEMIMAGE_PARTITION_RESERVED_SIZE := 1752350720
+BOARD_SYSTEM_EXTIMAGE_EXTFS_INODE_COUNT := -1
+BOARD_SYSTEM_EXTIMAGE_PARTITION_RESERVED_SIZE := 92160000
+endif
 
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -133,19 +146,19 @@ TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 BOARD_USES_METADATA_PARTITION := true
 
 # Platform
-TARGET_BOARD_PLATFORM := mt6785
+TARGET_BOARD_PLATFORM := mt6781
 BOARD_HAS_MTK_HARDWARE := true
 BOARD_HAVE_MTK_FM := true
 
 # Power
-TARGET_TAP_TO_WAKE_NODE := "/sys/touchpanel/double_tap"
+TARGET_TAP_TO_WAKE_NODE := "/proc/tp_gesture"
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 
 # Recovery
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.mt6785
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.mt6781
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
 # RIL
@@ -202,7 +215,6 @@ WIFI_DRIVER_STATE_CTRL_PARAM := "/dev/wmtWifi"
 WIFI_DRIVER_STATE_ON := "1"
 WIFI_DRIVER_STATE_OFF := "0"
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
-WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 
 # Inherit the proprietary files
-include vendor/xiaomi/rosemary/BoardConfigVendor.mk
+include vendor/xiaomi/fleur/BoardConfigVendor.mk

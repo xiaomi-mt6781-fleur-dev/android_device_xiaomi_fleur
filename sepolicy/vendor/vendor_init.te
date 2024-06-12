@@ -5,7 +5,10 @@ get_prop(vendor_init, vts_status_prop)
 allow vendor_init fingerprint_data_file:dir { rw_dir_perms relabelto setattr };
 allow vendor_init vendor_fingerprint_data_file:dir { rw_dir_perms relabelto setattr };
 allow vendor_init nfc_data_vendor_file:dir { r_dir_perms create_dir_perms };
+allow vendor_init proc_tp_gesture:file write;
 
 allow vendor_init proc_sched_stune:file w_file_perms;
 
 rw_dir_file(vendor_init, sysfs_leds)
+
+set_prop(vendor_init, vendor_mtk_powerhal_prop)
