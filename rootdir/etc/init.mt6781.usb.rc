@@ -859,12 +859,6 @@ on property:vendor.usb.config=*
     setprop sys.usb.config ${vendor.usb.config}
 ### vendor process end ###
 
-### test command start ###
-on property:vendor.usb.test=*
-    setprop sys.usb.config none
-    setprop sys.usb.config ${vendor.usb.test}
-### test command end ###
-
 on property:vendor.usb.printk=*
 	write /proc/sys/kernel/printk ${vendor.usb.printk}
 
