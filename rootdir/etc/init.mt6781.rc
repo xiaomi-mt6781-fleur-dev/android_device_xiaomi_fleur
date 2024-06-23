@@ -223,17 +223,6 @@ service batterysecret /vendor/bin/batterysecret
 on property:sys.boot_completed=1
     start batterysecret
 
-on property:sys.boot_completed=1
-    start charge_logger
-
-    symlink /dev/block/mapper/pl_a /dev/block/by-name/preloader_raw_a
-    symlink /dev/block/mapper/pl_b /dev/block/by-name/preloader_raw_b
-    symlink /dev/block/mapper/pl_a /dev/block/platform/bootdevice/by-name/preloader_raw_a
-    symlink /dev/block/mapper/pl_b /dev/block/platform/bootdevice/by-name/preloader_raw_b
-
-    # allow ccci_mdinit access ccci_dump
-    chown root system /proc/ccci_dump
-
 service vendor.charger /system/bin/charger
     class charger
     user system
@@ -656,9 +645,6 @@ on post-fs-data
     # gz device
     chmod 0660 /dev/gz_kree
     chown system system /dev/gz_kree
-
-    #Creat charger log
-    mkdir /data/vendor/charge_logger 0775 system system
 
     #Camera
     chmod 0660 /dev/camera-sysram
