@@ -1,3 +1,8 @@
 allow hal_audio_default persist_data_file:dir search;
 allow hal_audio_default ccci_aud_device:chr_file { read write };
 allow hal_audio_default mtk_audiohal_data_file:dir search;
+allow hal_audio_default ccci_aud_device:chr_file { open read };
+allow hal_audio_default ccci_aud_device:chr_file map;
+allow hal_audio_default hal_power_hwservice:hwservice_manager find;
+allow hal_audio_default vendor_mtk_audio_prop:property_service set;
+allow hal_audio_default mtk_audiohal_data_file:dir { read open };
