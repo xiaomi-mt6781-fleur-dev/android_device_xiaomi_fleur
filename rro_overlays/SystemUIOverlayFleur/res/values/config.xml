@@ -25,14 +25,6 @@
     <!-- Enable doze mode -->
     <bool name="doze_display_state_supported">true</bool>
 
-    <!-- rounded corner content padding -->
-    <dimen name="rounded_corner_content_padding">50.0px</dimen>
-
-    <!-- Status bar padding -->
-    <dimen name="status_bar_padding_start">8.0px</dimen>
-    <dimen name="status_bar_padding_end">8.0px</dimen>
-    <dimen name="status_bar_padding_top">28.0px</dimen>
-
     <!-- Location on the screen of the center of the fingerprint sensor. -->
     <dimen name="physical_fingerprint_sensor_center_screen_location_y">910px</dimen>
     <dimen name="physical_fingerprint_sensor_center_screen_location_x">1080px</dimen>
