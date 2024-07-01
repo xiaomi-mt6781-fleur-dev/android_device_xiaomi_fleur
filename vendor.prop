@@ -39,6 +39,7 @@ bluetooth.profile.pan.panu.enabled?=true
 bluetooth.profile.pbap.server.enabled?=true
 bluetooth.profile.sap.server.enabled?=true
 ro.vendor.mtk.bt_sap_enable=true
+ro.vendor.bt.platform=connac1x
 
 # Camera
 vendor.camera.mdp.cz.enable=1
