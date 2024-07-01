@@ -1,4 +1,3 @@
-
 # All blobs from fleur_global-user 13 TP1A.220624.014 V14.0.5.0.TKEMIXM release-keys
 
 # AAL
@@ -2495,15 +2494,6 @@ vendor/lib64/hw/thermal.mt6781.so
 
 # WiFi
 -vendor/lib64/libwifi-hal.so:vendor/lib64/libwifi-hal-mtk.so
-
-# Xiaomi MiCharge
-vendor/bin/hw/vendor.xiaomi.hardware.micharge@1.0-service
-vendor/etc/init/vendor.xiaomi.hardware.micharge@1.0-service.rc
--vendor/etc/vintf/manifest/vendor.xiaomi.hardware.micharge@1.0.xml
-vendor/lib/hw/vendor.xiaomi.hardware.micharge@1.0-impl.so
-vendor/lib/vendor.xiaomi.hardware.micharge@1.0.so
-vendor/lib64/hw/vendor.xiaomi.hardware.micharge@1.0-impl.so
-vendor/lib64/vendor.xiaomi.hardware.micharge@1.0.so
 
 # Misc
 vendor/bin/applypatch
