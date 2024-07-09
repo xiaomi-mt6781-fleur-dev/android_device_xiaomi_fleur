@@ -123,7 +123,8 @@ ro.vendor.colorpick_adjust=true
 ro.vendor.cabc.enable=true
 
 # FM Radio
-persist.vendor.connsys.fm_chipid=mt6631
+persist.vendor.connsys.fm_chipid=mt6631_6635
+ro.vendor.fm.platform=mt6631_6635
 
 # FRP
 ro.frp.pst=/dev/block/platform/bootdevice/by-name/frp
