@@ -6,10 +6,8 @@ Redmi Note 11S | Poco M4 Pro 4G (codenamed _"fleur"_) is a mid-range smartphone 
 It was released in February 2022.
 
 ## Known issues
-- Deep sleep
-- DT2W (sepolicy)
-- Device reports charging when disconnected
-- InCall Audio
+- VoLTE
+- Fingerprint for some users
 
 ## Device specifications
 
