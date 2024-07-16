@@ -2066,11 +2066,10 @@ system/etc/init/init.vtservice.rc
 -system/framework/mediatek-framework.jar
 -system/framework/mediatek-ims-base.jar
 -system/framework/mediatek-ims-common.jar
-system/framework/mediatek-ims-extension-plugin.jar
+-system/framework/mediatek-ims-extension-plugin.jar
 -system/framework/mediatek-telecom-common.jar
 -system/framework/mediatek-telephony-base.jar
 -system/framework/mediatek-telephony-common.jar
-system/framework/mediatek-wfo-legacy.jar
 system/lib/libmtk_vt_wrapper.so
 system/lib64/libmtk_vt_service.so
 system/lib64/libmtk_vt_wrapper.so
@@ -2087,6 +2086,8 @@ system/lib64/libvcodec_cap.so
 system/lib64/libvcodec_capenc.so
 system_ext/lib/vendor.mediatek.hardware.videotelephony@1.0.so:lib/vendor.mediatek.hardware.videotelephony@1.0.so
 system_ext/lib64/vendor.mediatek.hardware.videotelephony@1.0.so:lib64/vendor.mediatek.hardware.videotelephony@1.0.so
+vendor/lib64/hw/vendor.mediatek.hardware.videotelephony@1.0-impl.so
+vendor/lib64/vendor.mediatek.hardware.videotelephony@1.0.so
 
 # Patched IMSService APK, from fleur-user 12 SP1A.210812.016 V13.0.9.0.SKEMIXM release-keys
 # https://github.com/Nem1xx/ImsService
