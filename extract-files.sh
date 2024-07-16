@@ -85,7 +85,8 @@ function blob_fixup {
             "${PATCHELF}" --replace-needed "libutils.so" "libutils-v32.so" "${2}"
             ;;
         vendor/lib64/libgf_hal.so)
-            sed -i 's/\xff\xc3\x01\xd1\xfd\x7b\x06\xa9/\x00\x00\x80\xd2\xc0\x03\x5f\xd6/g' "${2}"
+            xxd -p "${2}" | sed "s/132a50aeff97fd7b41a9e003132af30742f8c0035fd6ff0301d1f65701a9/132a50aeff97fd7b41a9e003132af30742f8c0035fd6c0035fd6f65701a9/g" | xxd -r -p > "${2}".patched
+            mv "${2}".patched "${2}"
             ;;
         vendor/lib64/hw/fingerprint.fpc.default.so)
             sed -i 's/\xff\x43\x01\xd1\xfd\x7b\x02\xa9/\xc0\x03\x5f\xd6\xfd\x7b\x02\xa9/g' "${2}"
