@@ -89,7 +89,8 @@ function blob_fixup {
             mv "${2}".patched "${2}"
             ;;
         vendor/lib64/hw/fingerprint.fpc.default.so)
-            sed -i 's/\xff\x43\x01\xd1\xfd\x7b\x02\xa9/\xc0\x03\x5f\xd6\xfd\x7b\x02\xa9/g' "${2}"
+            xxd -p "${2}" | sed "s/1f2afd7bc2a8c0035fd600000000ff8301d1fd7b02a9fd830091f85f03a9/1f2afd7bc2a8c0035fd600000000c0035fd6fd7b02a9fd830091f85f03a9/g" | xxd -r -p > "${2}".patched
+            mv "${2}".patched "${2}"
             ;;
         system/lib64/libsink.so)
             "${PATCHELF}" --add-needed "libshim_sink.so" "$2"
