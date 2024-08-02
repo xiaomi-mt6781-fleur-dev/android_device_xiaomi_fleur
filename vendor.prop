@@ -237,6 +237,12 @@ init.userspace_reboot.is_supported=true
 
 # SurfaceFlinger
 ro.surface_flinger.primary_display_orientation=ORIENTATION_0
+ro.surface_flinger.protected_contents=true
+ro.surface_flinger.set_display_power_timer_ms=1200
+ro.surface_flinger.set_idle_timer_ms=0
+ro.surface_flinger.set_touch_timer_ms=5000
+ro.surface_flinger.use_content_detection_for_refresh_rate=true
+ro.surface_flinger.uclamp.min=130
 ro.surface_flinger.force_hwc_copy_for_virtual_displays=true
 ro.surface_flinger.enable_frame_rate_override=false
 ro.surface_flinger.has_wide_color_display=true
