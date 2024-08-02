@@ -129,6 +129,7 @@ ro.vendor.fm.platform=mt6631_6635
 ro.frp.pst=/dev/block/platform/bootdevice/by-name/frp
 
 # GNSS
+ro.vendor.gps.chrdev=gps_drv
 ro.vendor.mtk_wappush_support=1
 ro.vendor.mtk_agps_app=1
 ro.vendor.mtk_gps_support=1
