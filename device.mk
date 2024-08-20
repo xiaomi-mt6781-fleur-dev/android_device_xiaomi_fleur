@@ -478,7 +478,7 @@ PRODUCT_PACKAGES += \
     libkeystore-engine-wifi-hidl \
     wpa_supplicant \
     hostapd \
-    android.hardware.wifi@1.0-service-lazy.fleur
+    android.hardware.wifi-service
 
 PRODUCT_PACKAGES += \
     android.hardware.tetheroffload.config@1.0.vendor \
