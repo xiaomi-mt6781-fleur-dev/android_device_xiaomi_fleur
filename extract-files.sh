@@ -84,6 +84,12 @@ function blob_fixup {
         vendor/lib*/hw/vendor.mediatek.hardware.pq@2.13-impl.so)
             "${PATCHELF}" --replace-needed "libutils.so" "libutils-v32.so" "${2}"
             ;;
+        vendor/bin/mnld|\
+        vendor/lib*/libaalservice.so|\
+        vendor/lib*/libcam.utils.sensorprovider.so|\
+        vendor/lib*/librgbwlightsensor.so)
+            "$PATCHELF" --add-needed "libshim_sensors.so" "$2"
+            ;;
         vendor/lib64/libgf_hal.so)
             xxd -p "${2}" | sed "s/132a50aeff97fd7b41a9e003132af30742f8c0035fd6ff0301d1f65701a9/132a50aeff97fd7b41a9e003132af30742f8c0035fd6c0035fd6f65701a9/g" | xxd -r -p > "${2}".patched
             mv "${2}".patched "${2}"
