@@ -1719,14 +1719,6 @@ vendor/bin/doeapp-memtester
 vendor/bin/doeapp-sat
 vendor/bin/dtc_vendor
 
-# Engineer-Mode
-vendor/bin/em_hidl
-vendor/etc/init/em_hidl_user.rc
-vendor/lib64/vendor.mediatek.hardware.engineermode@1.0.so
-vendor/lib64/vendor.mediatek.hardware.engineermode@1.1.so
-vendor/lib64/vendor.mediatek.hardware.engineermode@1.2.so
-vendor/lib64/vendor.mediatek.hardware.engineermode@1.3.so
-
 # Factory
 vendor/bin/factory
 vendor/bin/stfactorydemo-vendor
