@@ -19,22 +19,6 @@ vendor/lib64/libladder.so
 vendor/lib64/libudf.so
 
 # APU
-system_ext/lib/vendor.mediatek.hardware.apuware.apusys@1.0.so
-system_ext/lib/vendor.mediatek.hardware.apuware.apusys@2.0.so
-system_ext/lib/vendor.mediatek.hardware.apuware.apusys@2.1.so
-system_ext/lib/vendor.mediatek.hardware.apuware.hmp@1.0.so
-system_ext/lib/vendor.mediatek.hardware.apuware.utils@1.0.so
-system_ext/lib/vendor.mediatek.hardware.apuware.utils@2.0.so
-system_ext/lib/vendor.mediatek.hardware.apuware.xrp@1.0.so
-system_ext/lib/vendor.mediatek.hardware.apuware.xrp@2.0.so
-system_ext/lib64/vendor.mediatek.hardware.apuware.apusys@1.0.so
-system_ext/lib64/vendor.mediatek.hardware.apuware.apusys@2.0.so
-system_ext/lib64/vendor.mediatek.hardware.apuware.apusys@2.1.so
-system_ext/lib64/vendor.mediatek.hardware.apuware.hmp@1.0.so
-system_ext/lib64/vendor.mediatek.hardware.apuware.utils@1.0.so
-system_ext/lib64/vendor.mediatek.hardware.apuware.utils@2.0.so
-system_ext/lib64/vendor.mediatek.hardware.apuware.xrp@1.0.so
-system_ext/lib64/vendor.mediatek.hardware.apuware.xrp@2.0.so
 vendor/lib/libapusys.so
 vendor/lib/libapusys_edma.so
 vendor/lib/libapu_mdw.so
@@ -235,8 +219,6 @@ vendor/lib/libmtk_bsg.so
 vendor/lib64/libmtk_bsg.so
 
 # Camera
-system_ext/lib/vendor.mediatek.hardware.camera.atms@1.0.so
-system_ext/lib64/vendor.mediatek.hardware.camera.atms@1.0.so
 vendor/bin/hw/camerahalserver
 vendor/bin/lib3a.ccu.ddr
 vendor/bin/lib3a.ccu.dm
