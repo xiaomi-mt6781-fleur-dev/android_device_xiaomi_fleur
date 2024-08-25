@@ -1,4 +1,4 @@
-# All blobs from fleur_global-user 13 TP1A.220624.014 V14.0.5.0.TKEMIXM release-keys
+# All blobs from fleur_global-user 13 TP1A.220624.014 V14.0.6.0.TKEMIXM release-keys
 
 # AAL
 vendor/lib/libaalservice.so

@@ -23,6 +23,6 @@ PRODUCT_MODEL := Redmi Note 11S
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="fleur-user 13 SP1A.210812.016 V14.0.5.0.TKEMIXM release-keys"
+    PRIVATE_BUILD_DESC="fleur-user 13 SP1A.210812.016 V14.0.6.0.TKEMIXM release-keys"
 
-BUILD_FINGERPRINT := Redmi/fleur_global/fleur:13/SP1A.210812.016/V14.0.5.0.TKEMIXM:user/release-keys
+BUILD_FINGERPRINT := Redmi/fleur_global/fleur:13/SP1A.210812.016/V14.0.6.0.TKEMIXM:user/release-keys
