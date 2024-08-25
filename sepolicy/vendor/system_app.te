@@ -9,3 +9,5 @@ dontaudit system_app system_suspend_control_service:service_manager find;
 # FM Radio
 get_prop(system_app, vendor_mtk_wmt_prop)
 get_prop(system_app, vendor_mtk_default_prop)
+
+binder_call(system_app, hal_audio_default)
