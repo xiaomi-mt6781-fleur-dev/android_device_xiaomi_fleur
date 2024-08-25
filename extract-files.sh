@@ -99,12 +99,12 @@ function blob_fixup {
             xxd -p "${2}" | sed "s/1f2afd7bc2a8c0035fd600000000ff8301d1fd7b02a9fd830091f85f03a9/1f2afd7bc2a8c0035fd600000000c0035fd6fd7b02a9fd830091f85f03a9/g" | xxd -r -p > "${2}".patched
             mv "${2}".patched "${2}"
             ;;
-        system/lib64/libsink.so)
+        system_ext/lib64/libsink.so)
             "${PATCHELF}" --add-needed "libshim_sink.so" "$2"
             ;;
-	    vendor/etc/vintf/manifest/manifest_media_c2_V1_2_default.xml)
-	        sed -i 's/1.1/1.2/' "$2"
-       	    ;;
+        vendor/etc/vintf/manifest/manifest_media_c2_V1_2_default.xml)
+            sed -i 's/1.1/1.2/' "$2"
+            ;;
     esac
 }
 
